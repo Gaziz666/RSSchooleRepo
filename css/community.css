@@ -78,3 +78,29 @@
   text-align: center;
   color: #4E4E4E;
 }
+.author-name_margin{
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.community-slider{
+  width: 894px;
+  height: 244px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+.community-slider-inner{
+  min-width: 407px;
+  height: 244px;
+  margin-right: 30px;
+}
+.slider1-png {
+  background: url(../assets/slider1.png);
+}
+.slider2-png {
+  background: url(../assets/slider2.png);
+}
+.slider3-png {
+  background: url(../assets/slider3.png);
+}

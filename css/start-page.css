@@ -31,17 +31,11 @@
   margin: 1px 516px 0 502px;
   cursor: pointer;
 }
-.nav div:nth-child(2) {
-  opacity: 1;
-  border-bottom: solid white 1px;
-}
 .nav-menu:hover {
   opacity: 1;
   border-bottom: solid white 1px;
 }
-.nav-menu:active {
-  border-bottom: solid white 1px;
-}
+
 .nav_font {
   color: #FFFFFF;
   font-size: 14px;
