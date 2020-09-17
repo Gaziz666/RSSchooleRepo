@@ -4,6 +4,7 @@ body{
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   box-sizing: border-box;
+  height: auto;
 }
 a:active,
 a:hover,
