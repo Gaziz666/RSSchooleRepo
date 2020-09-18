@@ -53,7 +53,9 @@
   height: 16.52px;
   padding-left: 3px;
   padding-top: 1px;
+  color: white
 }
 .email-send-ok:hover {
-  transform: scale(1.1)
+  transform: scale(1.5);
+  color: green;
 }

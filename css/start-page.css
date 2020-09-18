@@ -72,6 +72,9 @@
   margin-top: 136px;
   padding-left: 5px;
 }
+.nowrap {
+  white-space: nowrap;
+}
 .life-text_size {
   width: 504px;
   height: 50px;
@@ -94,6 +97,8 @@
   padding: 16px 48px 14px 46px;
   border: 0;
   cursor: pointer;
+  white-space: nowrap;
+  
 }
 .btn-start-page_margin {
   margin-top: 30px;

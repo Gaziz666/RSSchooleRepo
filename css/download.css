@@ -54,6 +54,9 @@
   cursor: pointer;
   padding-right: 0;
 }
+.download-button:hover {
+  background: #009CC2;
+}
 .download-button-text {
   padding: 2px 0 0 14px;
   font-weight: 700;
@@ -66,8 +69,9 @@
 .text_padding {
   padding-left: 10px;
 }
-.download-button:hover {
-  transform: scale(1.1)
+.download-button-text:hover {
+  transform: scale(1.1);
+  
 }
 .phone-os-icon {
   width: 60px;
@@ -77,4 +81,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.phone-os-icon svg:hover {
+  transform: scale(1.1);
 }
