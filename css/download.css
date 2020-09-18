@@ -32,6 +32,7 @@
   color: #4E4E4E;
   text-align: center;
   margin: 0px auto 30px auto;
+  padding-top: 2px;
 }
 .download-buttons {
   display: flex;
@@ -45,26 +46,32 @@
   flex-direction: row;
   margin-left: 15px;
   margin-right: 15px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-  text-align: center;
-  letter-spacing: 0.01px;
-  text-transform: uppercase;
   color: #FFFFFF;
   background: #00AFDB;
   border: none;
   align-items: center;
   justify-content: space-between;
-  padding: 2px 0 0 18px;
   cursor: pointer;
+  padding-right: 0;
+}
+.download-button-text {
+  padding: 2px 0 0 14px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.01px;
+  text-transform: uppercase;
+}
+.text_padding {
+  padding-left: 10px;
 }
 .download-button:hover {
   transform: scale(1.1)
 }
 .phone-os-icon {
   width: 60px;
-  height: 49px;
+  height: 50px;
   background: #009CC2;
   border: none;
   display: flex;
