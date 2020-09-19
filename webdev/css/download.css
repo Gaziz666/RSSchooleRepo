@@ -1,0 +1,87 @@
+.download {
+  width: 1600px;
+  height: 464px;
+  background: #F5F6F7;
+}
+.download-form {
+  width: 483px;
+  height: 168px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding-top: 120px;
+}
+.download-title {
+  width: 250.1px;
+  height: 28px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #373737;
+  margin: 0px auto 20px auto;
+}
+.download-text {
+  width: 483px;
+  height: 40px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 140%;
+  color: #4E4E4E;
+  text-align: center;
+  margin: 0px auto 28px auto;
+  padding-top: 2px;
+}
+.download-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.download-button {
+  width: 188px;
+  height: 46px;
+  display: flex;
+  flex-direction: row;
+  margin-left: 15px;
+  margin-right: 15px;
+  color: #FFFFFF;
+  background: #00AFDB;
+  border: none;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding-right: 0;
+}
+.download-button:hover {
+  background: #009CC2;
+}
+.download-button-text {
+  padding: 0px 0 0 14px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.01px;
+  text-transform: uppercase;
+}
+.text_padding {
+  padding-left: 10px;
+}
+.download-button-text:hover {
+  transform: scale(1.1);
+  
+}
+.phone-os-icon {
+  width: 60px;
+  height: 46px;
+  background: #009CC2;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.phone-os-icon svg:hover {
+  transform: scale(1.1);
+}
