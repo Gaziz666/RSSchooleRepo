@@ -73,12 +73,12 @@ class Calculator {
 
   computeSqr(button){
     let currentInt = parseFloat(this.currentOperand)
-    if (button === 'pow2' && this.currentOperand != null) {
+    if (button === 'pow2' && !isNaN(currentInt)) {
       this.currentOperand = parseFloat(Math.pow(currentInt, 2).toFixed(8))
     } else if (currentInt < 0) {
        alert(`коррень квадратный из отрицетального числа. Введите положительное число`)
         this.clear()
-    } else if (button === 'sqrt' && this.currentOperand != null) {
+    } else if (button === 'sqrt' && !isNaN(currentInt)) {
       this.currentOperand = parseFloat(Math.sqrt(currentInt).toFixed(8))
     } else return
   }
