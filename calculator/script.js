@@ -16,12 +16,23 @@ class Calculator {
   }
 
   appendNumber(number) {
-    if (number === "." && this.currentOperand.includes('.')) return
+    if (number === '.' && this.currentOperand.includes('.')) return
     this.currentOperand = this.currentOperand.toString() + number.toString()
   }
 
   chooseOperation(operation) {
-    if (this.currentOperand === '') return
+    //add minus
+    if (this.currentOperand === '') {
+      if (operation === '-') {
+        if (this.previousOperand === ''  || (this.previousOperand != '' && this.operation != '')) {
+        this.currentOperand = '-'
+        } 
+      }
+      
+      return
+      
+    } else if (this.currentOperand === '-') return
+    
     if (this.previousOperand != '') {
       this.compute()
     }
@@ -48,15 +59,19 @@ class Calculator {
         break
       case '÷': 
         result = prev / current
+        break
       default:
         return
     }
-    this.currentOperand = result
+    this.currentOperand = parseFloat(result.toFixed(10))
     this.previousOperand = ''
     this.operation = undefined
   }
 
   getDisplayNumber(number) {
+    if (number === '-') {
+      return number
+    }
     const stringNumber = number.toString();
     const integerDigits = parseFloat(stringNumber.split('.')[0]);
     const decimalDigits = stringNumber.split('.')[1];
