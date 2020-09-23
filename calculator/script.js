@@ -57,7 +57,10 @@ class Calculator {
       case '*': 
         result = prev * current
         break
-      case '÷': 
+      case '÷' || '/': 
+        result = prev / current
+        break
+      case '/': 
         result = prev / current
         break
       default:
@@ -72,6 +75,9 @@ class Calculator {
     let currentInt = parseFloat(this.currentOperand)
     if (button === 'pow2' && this.currentOperand != null) {
       this.currentOperand = parseFloat(Math.pow(currentInt, 2).toFixed(8))
+    } else if (currentInt < 0) {
+       alert(`коррень квадратный из отрицетального числа. Введите положительное число`)
+        this.clear()
     } else if (button === 'sqrt' && this.currentOperand != null) {
       this.currentOperand = parseFloat(Math.sqrt(currentInt).toFixed(8))
     } else return
@@ -156,5 +162,24 @@ sqrButtons.forEach(button => {
   })
 })
 
-//add listner for keyboard
+//add listener for keyboard
 
+document.addEventListener('keydown', (e) => {
+  if (parseInt(e.key) >= 0) {
+    calculator.appendNumber(e.key)
+    calculator.updateDisplay()
+  } else if(e.key === '+' ||
+            e.key === '-' ||
+            e.key === '*' ||
+            e.key === '/') {
+    calculator.chooseOperation(e.key)
+    calculator.updateDisplay()          
+  } else if (e.key === "Enter") {
+    calculator.compute()
+    calculator.updateDisplay()
+  } else if (e.key === "Backspace") {
+    calculator.delete()
+    calculator.updateDisplay()
+  }
+  
+})
