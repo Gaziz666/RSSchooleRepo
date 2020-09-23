@@ -63,9 +63,18 @@ class Calculator {
       default:
         return
     }
-    this.currentOperand = parseFloat(result.toFixed(10))
+    this.currentOperand = parseFloat(result.toFixed(8))
     this.previousOperand = ''
     this.operation = undefined
+  }
+
+  computeSqr(button){
+    let currentInt = parseFloat(this.currentOperand)
+    if (button === 'pow2' && this.currentOperand != null) {
+      this.currentOperand = parseFloat(Math.pow(currentInt, 2).toFixed(8))
+    } else if (button === 'sqrt' && this.currentOperand != null) {
+      this.currentOperand = parseFloat(Math.sqrt(currentInt).toFixed(8))
+    } else return
   }
 
   getDisplayNumber(number) {
@@ -107,6 +116,7 @@ const delButton = document.querySelector('[data-delete]');
 const equalButton = document.querySelector('[data-equals]');
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
+const sqrButtons = document.querySelectorAll('[data-sqr]')
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
 
@@ -138,3 +148,13 @@ delButton.addEventListener('click', () => {
   calculator.delete()
   calculator.updateDisplay()
 })
+
+sqrButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    calculator.computeSqr(button.value)
+    calculator.updateDisplay()
+  })
+})
+
+//add listner for keyboard
+
