@@ -27,6 +27,15 @@ body {
   background-color: rgba(255, 255, 255, .75);
 }
 
+.calculator-grid > button.clear{
+  background: rgb(255, 41, 41);
+  color: white;
+}
+.calculator-grid > button.equal{
+  background: rgba(61, 212, 47, 0.795);
+  
+}
+
 .calculator-grid > button:hover {
   background-color: rgba(255, 255, 255, .9);
 }

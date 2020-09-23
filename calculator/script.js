@@ -18,6 +18,8 @@ class Calculator {
   appendNumber(number) {
     if (number === '.' && this.currentOperand.includes('.')) return
     this.currentOperand = this.currentOperand.toString() + number.toString()
+    //limit inner number length 12
+    this.currentOperand = this.currentOperand.slice(0, 12)
   }
 
   chooseOperation(operation) {
@@ -28,9 +30,7 @@ class Calculator {
         this.currentOperand = '-'
         } 
       }
-      
       return
-      
     } else if (this.currentOperand === '-') return
     
     if (this.previousOperand != '') {
