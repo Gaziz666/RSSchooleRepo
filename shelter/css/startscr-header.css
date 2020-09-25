@@ -1,0 +1,25 @@
+.not-only{
+  width: 1920px;
+  height: 908px;
+  background: url(/shelter/assets/images/start-screen-gradient-background.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+  overflow: hidden;
+}
+.header{
+  width: 62.5%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60px auto 60px auto;
+}
+.navi{
+  width: 443px;
+  height: 27px;
+}
+.navi ul{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
