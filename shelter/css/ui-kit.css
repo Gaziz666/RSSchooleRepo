@@ -11,6 +11,7 @@
 }
 body{
   max-width: 1920px;
+  width: 100%;
   height: auto;
   margin: 0 auto;
 }
@@ -24,8 +25,8 @@ body{
   letter-spacing: 0.06em;
   color: #292929;
   align-self: center;
-  margin: 0px 10px;
   cursor: pointer;
+  padding: 15px 45px;
 }
 .button-primary_bcg-orange{
   background: #F1CDB3;
@@ -145,3 +146,14 @@ p{
   box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   background: none;
 }
+.block{
+  max-width: 1920px;
+  margin:0 auto;
+  overflow: hidden;
+}
+.block-inner{
+  width: 1200px;
+  margin: 80px auto 100px;
+  overflow: hidden;
+}
+

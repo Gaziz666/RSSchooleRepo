@@ -1,0 +1,27 @@
+.about_bckr{
+  background: #FFFFFF;
+}
+.about-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.about-pets{
+  width: 49.58%;
+  flex-shrink: 0;
+  height: 408px;
+  padding-left: 14.58%;
+  padding-right: 10%;
+  
+}
+.about-text{
+  width: 50.42%;
+  flex-shrink: 0;
+  height: 380px;
+  padding-right: 14.58%;
+  
+}
+.about-text-p_padding{
+  padding: 25px 0;
+}

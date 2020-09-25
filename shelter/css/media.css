@@ -1,0 +1,10 @@
+@media (max-width: 1200px) {
+  .block-inner, .block, .header, .start-screen, body{
+    width: 100%;
+  } 
+}
+@media (max-width: 1920px) {
+  body, .block{
+    width: 100%;
+  } 
+}

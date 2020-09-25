@@ -1,25 +1,64 @@
+.not-visible{
+  visibility: hidden;
+  position: absolute;
+}
 .not-only{
-  width: 1920px;
-  height: 908px;
+  height: auto;
   background: url(/shelter/assets/images/start-screen-gradient-background.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
   overflow: hidden;
 }
 .header{
-  width: 62.5%;
+  width: 1200px;
   height: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin: 60px auto 60px auto;
+  overflow: hidden;
 }
+
+.header-logo_flex{
+  flex-basis: 186px;
+  flex-shrink: 0;
+}
+
 .navi{
-  width: 443px;
+  flex-basis: 443px;
   height: 27px;
+  flex-shrink: 0;
 }
+
 .navi ul{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.start-screen{
+  width: 1200px;
+  height: 728px;
+  margin:0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.start-screen-content{
+  flex: 0 0 38.3%;
+  padding-bottom: 78px;
+}
+.start-screen-header_style{
+  padding-bottom: 42px;
+  color: #FFFFFF;
+}
+.start-screen-paragraph_color{
+  color: #CDCDCD;
+  padding-bottom: 41px;
+}
+.start-screen-puppy{
+  width: 698px;
+  height: 728px;
+  background: url(../assets/images/start-screen-puppy.png);
 }
