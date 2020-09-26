@@ -47,6 +47,9 @@
   margin-left: 0;
   cursor: pointer;
 }
+.email-send:hover{
+  background: #009CC2;
+}
 
 .email-send-ok {
   width: 19px;
