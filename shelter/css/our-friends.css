@@ -1,0 +1,25 @@
+.our-friends{
+  background: #F6F6F6;
+}
+.our-friends-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pets-slider{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60px 0;
+  width: 100%;
+}
+
+.cards{
+  display: flex;
+  flex-direction: row;
+  flex-basis: 82.5%;
+  justify-content: space-between;
+}

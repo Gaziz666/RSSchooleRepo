@@ -1,0 +1,33 @@
+.donation{
+  background: #F6F6F6;
+}
+
+.donation-content_flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.donation-img{
+  padding-right: 30px;
+  padding-left: 8px;
+}
+
+.donation-text{
+  margin-right: 30px;
+}
+
+.credit-card{
+  background: #F1CDB3;
+  border-radius: 9px;
+  padding: 10px 15px;
+  display: inline-flex
+}
+.credit-card svg{
+  margin-right: 15px;
+}
+
+.donation-text-item{
+  margin-bottom: 21px;
+}
