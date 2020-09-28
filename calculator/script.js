@@ -2,13 +2,15 @@ class Calculator {
   constructor(previousOperandTextElement, currentOperandTextElement) {
     this.previousOperandTextElement = previousOperandTextElement,
     this.currentOperandTextElement = currentOperandTextElement,
+    this.readyToReset = false,
     this.clear()
   }
 
   clear() {
     this.currentOperand = ''
     this.previousOperand = ''
-    this.operation = undefined
+    this.operation = ''
+    this.readyToReset = false;
   }
 
   delete() {
@@ -17,7 +19,11 @@ class Calculator {
 
   appendNumber(number) {
     if (number === '.' && this.currentOperand.includes('.')) return
-    this.currentOperand = this.currentOperand.toString() + number.toString()
+    if (number === '.' && this.currentOperand === "-") {
+      this.currentOperand = this.currentOperand.toString() + '0' + number.toString()  
+    } else {
+      this.currentOperand = this.currentOperand.toString() + number.toString()
+    }
     //limit inner number length 12
     this.currentOperand = this.currentOperand.slice(0, 12)
   }
@@ -57,27 +63,29 @@ class Calculator {
       case '*': 
         result = prev * current
         break
-      case '÷' || '/': 
+      case '÷' || '/': //for keyboard button /
         result = prev / current
         break
       case '/': 
         result = prev / current
         break
+      case 'pow':
+        result = Math.pow(prev, current)
+        break
       default:
         return
     }
+    this.readyToReset = true;
     this.currentOperand = parseFloat(result.toFixed(8))
     this.previousOperand = ''
-    this.operation = undefined
+    this.operation = ''
   }
 
   computeSqr(button){
     let currentInt = parseFloat(this.currentOperand)
-    if (button === 'pow2' && !isNaN(currentInt)) {
-      this.currentOperand = parseFloat(Math.pow(currentInt, 2).toFixed(8))
-    } else if (currentInt < 0) {
-       alert(`коррень квадратный из отрицетального числа. Введите положительное число`)
-        this.clear()
+    if (currentInt < 0) {
+      alert(`коррень квадратный из отрицетального числа. Введите положительное число`)
+      this.clear()
     } else if (button === 'sqrt' && !isNaN(currentInt)) {
       this.currentOperand = parseFloat(Math.sqrt(currentInt).toFixed(8))
     } else return
@@ -103,7 +111,8 @@ class Calculator {
   }
 
   updateDisplay() {
-    this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand)
+    this.currentOperandTextElement.innerText = 
+      this.getDisplayNumber(this.currentOperand)
     if (this.operation != null) {
       this.previousOperandTextElement.innerText = 
         `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
@@ -128,6 +137,12 @@ const calculator = new Calculator(previousOperandTextElement, currentOperandText
 
 numberButtons.forEach(button => {
   button.addEventListener('click', () => {
+    if(calculator.previousOperand === "" &&
+        calculator.currentOperand !== "" &&
+        calculator.readyToReset) {
+          calculator.currentOperand = "";
+          calculator.readyToReset = false;
+      }
     calculator.appendNumber(button.innerText)
     calculator.updateDisplay()
   })
@@ -157,7 +172,11 @@ delButton.addEventListener('click', () => {
 
 sqrButtons.forEach(button => {
   button.addEventListener('click', () => {
-    calculator.computeSqr(button.value)
+    if (button.value === "pow") {
+      calculator.chooseOperation(button.value)
+    } else {
+      calculator.computeSqr(button.value)
+    }
     calculator.updateDisplay()
   })
 })
