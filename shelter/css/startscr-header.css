@@ -27,6 +27,7 @@
   flex-basis: 443px;
   height: 27px;
   flex-shrink: 0;
+  margin-bottom: 3px;
 }
 
 .navi ul{
@@ -50,12 +51,12 @@
   padding-bottom: 78px;
 }
 .start-screen-header_style{
-  padding-bottom: 42px;
+  padding-bottom: 40px;
   color: #FFFFFF;
 }
 .start-screen-paragraph_color{
   color: #CDCDCD;
-  padding-bottom: 41px;
+  padding-bottom: 40px;
 }
 .start-screen-puppy{
   width: 698px;
