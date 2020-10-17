@@ -11,8 +11,11 @@
   width: 1200px;
 }
 
-.color-orange{
+.header4_color-orange{
   color: #F1CDB3;
+  font-size: 2.0rem;
+  line-height: 115%;
+  letter-spacing: 0.06em;
 }
 
 .mail{
@@ -36,6 +39,9 @@
 }
 .margin-bottom_35{
   margin-bottom: 35px;
+}
+.max-width_279{
+  max-width: 279px;
 }
 
 .footer-card_margin-left{

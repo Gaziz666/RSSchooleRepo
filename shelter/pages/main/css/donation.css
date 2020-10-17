@@ -15,7 +15,8 @@
 }
 
 .donation-text{
-  margin-right: 30px;
+  margin-right: 10px;
+  max-width: 380px;
 }
 
 .credit-card{

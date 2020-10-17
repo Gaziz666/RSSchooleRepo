@@ -1,10 +1,8 @@
-.not-visible{
-  visibility: hidden;
-  position: absolute;
-}
+
 .not-only{
   height: auto;
   background: url(../../../assets/images/start-screen-gradient-background.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+  background-repeat: round;
   overflow: hidden;
 }  
 .header{
@@ -14,8 +12,11 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 60px auto 60px auto;
   overflow: hidden;
+}
+
+.header_margin__60{
+  margin: 60px auto;
 }
 
 .header-logo_flex{
@@ -49,9 +50,13 @@
 .start-screen-content{
   flex: 0 0 38.3%;
   padding-bottom: 78px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
 }
 .start-screen-header_style{
-  padding-bottom: 40px;
+  padding-bottom: 42px;
   color: #FFFFFF;
 }
 .start-screen-paragraph_color{
