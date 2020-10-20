@@ -4,10 +4,18 @@ const time = document.querySelector('#time'),
       greeting = document.querySelector('#greeting'),
       name = document.querySelector('#name'),
       focus = document.querySelector('#focus'),
+
       day = document.querySelector('#day'),
       body = document.querySelector('body'),
+
       blockquote = document.querySelector('blockquote'),
-      figcaption = document.querySelector('figcaption');
+      figcaption = document.querySelector('figcaption'),
+      
+      weatherIcon = document.querySelector('.weather-icon'),
+      temperature = document.querySelector('#temperature'),
+      wind = document.querySelector('#wind'),
+      city = document.querySelector('.city'),
+      humidity = document.querySelector('#humidity');
 
 // variables
 const baseUrl = './assets/images/';
@@ -187,6 +195,13 @@ const delDefaultFocus = (e) => {
   }
 }
 
+// Delete default city onClick
+const delDefaultCity = (e) => {
+  if (city.textContent === '[Enter city]') {
+    city.textContent = ' '
+  }
+}
+
 // change background img
 const viewBgImage = (url) => {
   const src = url;
@@ -213,11 +228,54 @@ const getImage = () => {
 
 // change Quote
 async function getQuote() {  
-  const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=ru`;
+  const url = './assets/json/quotes.json'
   const res = await fetch(url);
   const data = await res.json(); 
-  blockquote.textContent = data.quoteText;
-  figcaption.textContent = data.quoteAuthor;
+  const index = Math.floor(Math.random() * 8)
+  blockquote.textContent = data[index].quote;
+  figcaption.textContent = data[index].author;
+}
+
+// wether
+async function getWeather() {
+  if (city.textContent === '' || city.textContent === '[Enter city]') {
+    return
+  } else {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=ru&appid=98e6e264adf48d465e96a990f0dc6fbe&units=metric`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+  weatherIcon.className = 'weather-icon owf';
+  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+  temperature.textContent = `${data.main.temp}°C`;
+  wind.textContent = `ветер ${data.wind.speed} м/с`;
+  humidity.textContent = `влажность ${data.main.humidity} %`;
+  }
+}
+getWeather()
+
+// Get city for wether
+const getCity = () => {
+  if (localStorage.getItem('city') === null) {
+    city.textContent = '[Enter city]'
+  } else {
+    city.textContent = localStorage.getItem('city')
+  }
+}
+
+// set city for wether
+function setCity(e) {
+  if (e.type === 'keypress') {
+    if (e.keyCode === 13) {
+      localStorage.setItem('city', e.target.innerText);
+      city.blur()
+      getWeather().catch(e => alert('Такого города не существует. Ввежите пожалуиста корректное название города'))
+    }
+  }else if (city.textContent === ' ' || city.textContent === ''){
+    city.textContent = '[Enter city]'
+  } else {
+    localStorage.setItem('city', e.target.innerText)   
+  }
 }
 
 
@@ -230,6 +288,11 @@ focus.addEventListener('click', delDefaultFocus)
 document.querySelector('#nextImage').addEventListener('click', getImage)
 document.addEventListener('DOMContentLoaded', getQuote);
 document.querySelector('#nextQuote').addEventListener('click', getQuote);
+document.addEventListener('DOMContentLoaded', getWeather);
+city.addEventListener('keypress', setCity);
+city.addEventListener('blur', setCity);
+city.addEventListener('click', delDefaultCity)
+
 
 
 // Run;
@@ -238,3 +301,4 @@ setBgGreet();
 getName();
 getFocus();
 getQuote();
+getCity();

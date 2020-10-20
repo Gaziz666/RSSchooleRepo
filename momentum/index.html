@@ -5,9 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Momentum</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/owfont-regular.css">
 </head>
 <body>
+  
+  <div class="wether">
+    <div class="city" contenteditable="true"></div>
+    <i class="weather-icon owf"></i>
+    <div id="temperature"></div>
+    <div id="wind"></div>
+    <div id="humidity"></div>
+  </div>
 
   <time id="time"></time>
   <h2 id="day"></h2>
@@ -31,14 +40,6 @@
   <div class="buttons">
     <button id="nextImage" class="btn">Next Image</button>
     <button id="nextQuote" class="btn">Next Quote</button>
-  </div>
-
-  <div class="wether">
-    <div class="city" contenteditable="true">Минск</div>
-    <i class="weather-icon owf"></i>
-    <div class="temperature"></div>
-    <div class="weather-description"></div>
-    <script src="script.js"></script>
   </div>
   
 
