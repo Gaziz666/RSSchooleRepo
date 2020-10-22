@@ -10,7 +10,7 @@
   list-style-type: none;
 }
 body{
-  max-width: 1280px;
+  width: 100%;
   width: 100%;
   height: auto;
   margin: 0 auto;
@@ -74,6 +74,7 @@ body{
   line-height: 115%;
   letter-spacing: 0.06em;
   color: #545454;
+  transition: all 1s ease-in-out;
 }
 .header5{
   font-size: 1.5rem;
@@ -134,10 +135,7 @@ p{
   color: #CDCDCD;
   margin: 10px 0px;
 }
-.main-page-link:active{
-  border-bottom: 1px solid #F1CDB3;
-  color: #FAFAFA;
-}
+
 .main-page-link:hover{
   color: #FAFAFA;
   cursor: pointer;
@@ -145,7 +143,9 @@ p{
 .active{
   border-bottom: 3px solid #F1CDB3;
 }
-
+.cards {
+  min-height: 435px;
+}
 .card{
   min-width: 270px;
   height: 435px;
@@ -155,6 +155,7 @@ p{
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  margin-right: 90px;
 }
 
 .card:hover{
@@ -163,7 +164,7 @@ p{
   cursor: pointer;
 }
 .block{
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
   overflow: hidden;
 }
@@ -176,10 +177,19 @@ p{
 .not-visible{
   visibility: hidden;
   position: absolute;
+  
+}
+.transition_all{
+  transition: all 2s;
 }
 .visible{
   visibility: visible;
   position: static;
+  animation: fadeIn 1s;
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
 }
 
 

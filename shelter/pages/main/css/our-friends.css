@@ -21,5 +21,40 @@
   display: flex;
   flex-direction: row;
   flex-basis: 82.5%;
-  justify-content: space-between;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+.pet-image{
+  transition: all 2s ease-in-out;
+}
+
+.to-left{
+  animation-name: left;
+}
+.to-right{
+  animation-name: right;
+  animation-direction: reverse;
+}
+.from-left{
+  animation-name: left;
+  animation-direction: reverse;
+}
+.from-right{
+  animation-name: right;
+}
+@keyframes right {
+  from {
+    left: 0;
+  }
+  to {
+    right: 100%;
+  }
+}
+@keyframes left {
+  from {
+    left: 100%;
+  }
+  to {
+    right: 0;
+  }
 }
