@@ -2,12 +2,14 @@
       and (min-width: 768px) {
 
   .cards-container{
-    margin: 15px 94px 0;
+    margin: 0 74px;
     max-height: 1365px;
     overflow: hidden;
   }
-  .cards-navi{
-    margin-top: 55px;
+
+
+  .margin-top-30{
+    margin: 30px 20px 0;
   }
   .block-inner{
     margin-bottom: 76px;

@@ -16,4 +16,5 @@
 
 .pets-link-color_dark:hover{
   color:#F1CDB3;
+  cursor: pointer;
 }

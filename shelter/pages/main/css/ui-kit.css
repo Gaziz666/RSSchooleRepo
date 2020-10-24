@@ -110,6 +110,7 @@ p{
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 .logo_title{
   font-size: 3.2rem;
@@ -134,6 +135,7 @@ p{
   line-height: 160%;
   color: #CDCDCD;
   margin: 10px 0px;
+  cursor: not-allowed;
 }
 
 .main-page-link:hover{

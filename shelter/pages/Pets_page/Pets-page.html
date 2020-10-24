@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./css/main-pets.css">
   <link rel="stylesheet" href="/pages/main/css/footer.css">
   <link rel="stylesheet" href="../main/css/media.css">
+  <link rel="stylesheet" href="./../main/css/popup.css">
   <link rel="stylesheet" href="./css/pets-media.css">
   
   <title>Document</title>
@@ -48,95 +49,30 @@
         Our friends who<br>
         are looking for a house
       </h3>
-
-      <div class="cards-container">
-
-        <div class="card margin-top-30">
-          <div class="card_image">
-            <img src="../../assets/images/pets-slider1.png" alt="pet-image" data_index="3">
-          </div>
-          <h4 class="header4">Katrine</h4>
-          <button class="button-primary_text button_margin-bottom">Learn more</button>
-        </div>
-
-        <div class="card margin-top-30">
-          <div class="card_image">
-            <img src="../../assets/images/pets-slider2.png" alt="pet-image">
-          </div>
-          <h4 class="header4">Jennifer</h4>
-          <button class="button-primary_text button_margin-bottom">Learn more</button>
-        </div>
-
-        <div class="card margin-top-30">
-          <div class="card_image">
-            <img src="../../assets/images/pets-slider3.png" alt="pet-image">
-          </div>
-          <h4 class="header4">Woody</h4>
-          <button class="button-primary_text button_margin-bottom">Learn more</button>
-        </div>
-
-        <div class="card margin-top-30">
-          <div class="card_image">
-            <img src="../../assets/images/pets-slider4-sofia.png" alt="pet-image">
-          </div>
-          <h4 class="header4">Sophia</h4>
-          <button class="button-primary_text button_margin-bottom">Learn more</button>
-        </div>
-
-        <div class="card margin-top-30">
-          <div class="card_image">
-            <img src="../../assets/images/pets-slider5-timmy.png" alt="pet-image">
-          </div>
-          <h4 class="header4">Timmy</h4>
-          <button class="button-primary_text button_margin-bottom">Learn more</button>
-        </div>
-
-        <div class="card margin-top-30">
-          <div class="card_image">
-            <img src="../../assets/images/pets-slider6-charly.png" alt="pet-image">
-          </div>
-          <h4 class="header4">Charly</h4>
-          <button class="button-primary_text button_margin-bottom">Learn more</button>
-        </div>
-
-        <div class="card margin-top-30">
-          <div class="card_image">
-            <img src="../../assets/images/pets-slider7-scarlet.png" alt="pet-image">
-          </div>
-          <h4 class="header4">Scarlett</h4>
-          <button class="button-primary_text button_margin-bottom">Learn more</button>
-        </div>
-
-        <div class="card margin-top-30">
-          <div class="card_image">
-            <img src="../../assets/images/pets-slider8-fredy.png" alt="pet-image">
-          </div>
-          <h4 class="header4">Freddie</h4>
-          <button class="button-primary_text button_margin-bottom">Learn more</button>
-        </div>
-
-      </div>
+      
+      <div id="petsList">
+      </div> 
 
       <div class="cards-navi">
 
         <div>
-          <button class="pets-navi-buttons buttons-inactive"><<</button>
+          <button id="double-left" class="leftButton pets-navi-buttons buttons-inactive"><<</button>
         </div>
 
         <div>
-          <button class="pets-navi-buttons buttons-inactive"><</button>
+          <button id="left" class="leftButton pets-navi-buttons buttons-inactive"><</button>
         </div>
 
         <div>
-          <button class="pets-navi-buttons buttons-active buttons-number">1</button>
+          <button id="pageNumber" class="pets-navi-buttons buttons-active buttons-number">1</button>
         </div>
 
         <div>
-          <button class="pets-navi-buttons buttons-active">></button>
+          <button id="right" class="rightButton pets-navi-buttons buttons-active">></button>
         </div>
 
         <div>
-          <button class="pets-navi-buttons buttons-active">>></button>
+          <button id="double-right" class="rightButton pets-navi-buttons buttons-active">>></button>
         </div>
 
       </div>
@@ -210,7 +146,6 @@
     </div>
   </footer>
 
-  <script src="./../main/main-script.js"></script>
-  <script src="./pets-script.js"></script>
+  <script src="./pets-script.js"></scrip>
 </body>
 </html>
