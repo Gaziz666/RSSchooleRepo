@@ -4,7 +4,9 @@ const petsCard = document.querySelector('.cards');
 const arrowBtn = document.querySelectorAll('.button-arrow');
 const bodyWidth = document.documentElement.clientWidth;
 const card = document.querySelectorAll('.card');
-let cardsCount = 3
+const burger = document.querySelector('#burger');
+let cardsCount = 3;
+let menuOpen = false
       
       
 
@@ -89,22 +91,7 @@ async function getPets(n) {
   }
 }
 
-// event handlers
-const eventHandler = (e) => {
-  if (e.target.className === 'popup-back' || e.target.className === 'close-button') {
-    closePopup()
-  }
-}
-const eventHandlerMousover = (e) => {
-  if (e.target.className === 'popup-back' || e.target.className === 'close-button') {
-    hoverButton(e)
-  }
-}
-const eventHandlerMousout = (e) => {
-  if (e.target.className === 'popup-back' ) {
-    hoverButton(e)
-  }
-}
+
 // hover effect for button
 const hoverButton = (e) => {
   if (e.type === "mouseover") {
@@ -178,6 +165,51 @@ const inactivClass = () => {
   })
 }
 
+//click on burger menu on 320 px
+
+const burgerMenuEnable = () => {
+  burger.classList.add('rotate')
+  burger.classList.remove('rotate-revers')
+  document.querySelector('.header').classList.add('bg-black')
+  document.querySelector('.navi').classList.remove('to-right')
+  document.querySelector('.navi').classList.add('to-left')
+  menuOpen = true
+}
+
+const burgerMenuDisable = () => {
+  burger.classList.add('rotate-revers')
+  burger.classList.remove('rotate')
+  document.querySelector('.header').classList.remove('bg-black')
+  document.querySelector('.navi').classList.add('to-right')
+  document.querySelector('.navi').classList.remove('to-left')
+  menuOpen = false
+}
+
+
+
+// event handlers
+
+const eventHandler = (e) => {
+  if (e.target.className === 'popup-back' || e.target.className === 'close-button') {
+    closePopup()
+  }else if ((e.target.id === 'burger' || e.target.className === 'burger-line') && !menuOpen) {
+    burgerMenuEnable()
+  } else if ((e.target.id === 'burger' || e.target.className === 'burger-line') && menuOpen) {
+    burgerMenuDisable()
+  }
+}
+
+const eventHandlerMousover = (e) => {
+  if (e.target.className === 'popup-back' || e.target.className === 'close-button') {
+    hoverButton(e)
+  }
+}
+
+const eventHandlerMousout = (e) => {
+  if (e.target.className === 'popup-back' ) {
+    hoverButton(e)
+  }
+}
 
 // listeners
 
@@ -186,6 +218,7 @@ arrowBtn.forEach(item => {item.addEventListener('click', slider)})
 document.addEventListener('click', eventHandler)
 document.addEventListener('mouseover', eventHandlerMousover);
 document.addEventListener('mouseout', eventHandlerMousout)
+
 
 
 // RUN

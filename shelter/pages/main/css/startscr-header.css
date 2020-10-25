@@ -68,3 +68,31 @@
   height: 728px;
   background: url(../../../assets/images/start-screen-puppy.png);
 }
+
+.rotate{
+  animation: rotating  .5s linear forwards;
+}
+.rotate-revers {
+  animation: rotating-revers  .5s linear forwards;
+}
+.bg-black{
+  background:  #292929;
+  transition: .5s;
+}
+.to-right{
+    right: -320px;
+    transition: 1s;
+}
+.to-left{
+  right: 0px;
+  transition: 1s;
+}
+
+@keyframes rotating {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(90deg); }
+}
+@keyframes rotating-revers {
+  0%   { transform: rotate(90deg); }
+  100% { transform: rotate(0deg); }
+}

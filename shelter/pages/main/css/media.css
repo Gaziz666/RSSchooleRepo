@@ -156,22 +156,52 @@
   }
   .block, body{
     width: 100%;
-  } 
+  }
+
+  .header-container{
+    width: 100%;
+  }
   .header {
-    width: 300px;
-    
+    width: 320px;
+    transition: .5s;
+    right: 0;
   }
   .header_margin__60{
-    margin: 30px auto 60px;
+    margin: 0px 0 60px auto;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .logo{
+    margin-left: 10px;
   }
   .navi{
-    visibility: hidden;
     position: absolute;
+    height: 733px;
+    width: 320px;
+    top: 90px;
+    padding: 158px 0 248px 0;
+    background: #292929;
   }
+  
+  .navi ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .links{
+    font-size: 3.2rem;
+  }
+  .navi ul li {
+    margin-bottom: 40px;
+  }
+
   .burger{
     visibility: visible;
     position: relative;
-    margin-right: 43px;
+    margin-right: 53px;
+    cursor: pointer;
+
   }
   .burger-line {
     width: 30px;
@@ -186,7 +216,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin:0 auto;
+    margin: 0 auto;
   }
   .start-screen-content {
     margin: 0 auto;
@@ -248,7 +278,6 @@
   .about-text-p_padding{
     padding: 24px 0;
   }
-
 
   /*--our friend pets block --*/
 
