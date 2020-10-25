@@ -4,6 +4,7 @@ const time = document.querySelector('#time'),
       greeting = document.querySelector('#greeting'),
       name = document.querySelector('#name'),
       focus = document.querySelector('#focus'),
+      city = document.querySelector('#city')
 
       day = document.querySelector('#day'),
       body = document.querySelector('body'),
@@ -14,16 +15,13 @@ const time = document.querySelector('#time'),
       weatherIcon = document.querySelector('.weather-icon'),
       temperature = document.querySelector('#temperature'),
       wind = document.querySelector('#wind'),
-      city = document.querySelector('.city'),
       humidity = document.querySelector('#humidity');
 
 // variables
 const baseUrl = './assets/images/';
-const images = ['01.jpg', '02.jpg', '03.jpg', '03.jpg', '04.jpg', '05.jpg','06.jpg',
-  '07.jpg','08.jpg','09.jpg','10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg',
-  '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg',];
+const images = ['01.jpg', '02.jpg', '03.jpg', '03.jpg', '04.jpg', '05.jpg','06.jpg'];
 const dayStatus = ['morning/', 'day/', 'evening/', 'night/']
-let i = Math.floor(Math.random() * 19),
+let i = Math.floor(Math.random() * 6),
     j = 0;
 
 
@@ -123,12 +121,10 @@ const setBgGreet = () => {
       j = 2;
       getImage()
       greeting.textContent = 'Добрый вечер';
-      document.body.style.color = "white";
     } else {
       j = 3;
       getImage()
       greeting.textContent = 'Доброй ночи';
-      document.body.style.color = "white"
     }
     let timeout = ((60 - min) * 60 - (60 - sec)) * 1000
     setTimeout(setBgGreet, timeout);
@@ -184,21 +180,21 @@ const setFocus = (e) => {
 // Delete default name onClick
 const delDefaultName = (e) => {
   if (name.textContent === '[Enter name]') {
-    name.textContent = ' '
+    name.textContent = ''
   }
 }
 
 // Delete default focus onClick
 const delDefaultFocus = (e) => {
   if (focus.textContent === '[Enter focus]') {
-    focus.textContent = ' '
+    focus.textContent = ''
   }
 }
 
 // Delete default city onClick
 const delDefaultCity = (e) => {
   if (city.textContent === '[Enter city]') {
-    city.textContent = ' '
+    city.textContent = ''
   }
 }
 
@@ -221,7 +217,7 @@ const getImage = () => {
   const imageSrc = baseUrl + dayStatus[statusIndex] + images[index];
   viewBgImage(imageSrc);
   i++;
-  if (index === 20) {
+  if (index === 6) {
     j++;
   }
 }
@@ -267,9 +263,13 @@ const getCity = () => {
 function setCity(e) {
   if (e.type === 'keypress') {
     if (e.keyCode === 13) {
+      if (city.textContent === ''){
+        city.textContent = localStorage.getItem('city')
+      }else {
       localStorage.setItem('city', e.target.innerText);
       city.blur()
-      getWeather().catch(e => alert('Такого города не существует. Ввежите пожалуиста корректное название города'))
+      getWeather().catch(e => alert(`Такого города не существует. Ввежите пожалуиста корректное название города`))
+      }
     }
   }else if (city.textContent === ' ' || city.textContent === ''){
     city.textContent = '[Enter city]'
