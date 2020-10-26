@@ -127,6 +127,11 @@ dist
 # Serverless directories
 .serverless/
 
+
+.DS_Store
+../.vscode/
+.vscode/
+
 # FuseBox cache
 .fusebox/
 
