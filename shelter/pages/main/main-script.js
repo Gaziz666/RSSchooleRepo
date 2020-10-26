@@ -5,6 +5,9 @@ const arrowBtn = document.querySelectorAll('.button-arrow');
 const bodyWidth = document.documentElement.clientWidth;
 const card = document.querySelectorAll('.card');
 const burger = document.querySelector('#burger');
+const header = document.querySelector('.header');
+const navigation = document.querySelector('.navi');
+const body = document.querySelector('body') 
 let cardsCount = 3;
 let menuOpen = false
       
@@ -170,19 +173,25 @@ const inactivClass = () => {
 const burgerMenuEnable = () => {
   burger.classList.add('rotate')
   burger.classList.remove('rotate-revers')
-  document.querySelector('.header').classList.add('bg-black')
-  document.querySelector('.navi').classList.remove('to-right')
-  document.querySelector('.navi').classList.add('to-left')
-  menuOpen = true
+  header.classList.add('bg-black')
+  navigation.classList.remove('to-right')
+  navigation.classList.add('to-left');
+  body.classList.add('not-scroll')
+  menuOpen = true;
+  const overlay = document.createElement('div')
+  overlay.classList.add('overlay')
+  document.querySelector('.not-only').append(overlay)
 }
 
 const burgerMenuDisable = () => {
   burger.classList.add('rotate-revers')
   burger.classList.remove('rotate')
-  document.querySelector('.header').classList.remove('bg-black')
-  document.querySelector('.navi').classList.add('to-right')
-  document.querySelector('.navi').classList.remove('to-left')
+  header.classList.remove('bg-black')
+  navigation.classList.add('to-right')
+  navigation.classList.remove('to-left')
+  body.classList.remove('not-scroll')
   menuOpen = false
+  document.querySelector('.overlay').remove()
 }
 
 
@@ -194,7 +203,10 @@ const eventHandler = (e) => {
     closePopup()
   }else if ((e.target.id === 'burger' || e.target.className === 'burger-line') && !menuOpen) {
     burgerMenuEnable()
-  } else if ((e.target.id === 'burger' || e.target.className === 'burger-line') && menuOpen) {
+  } else if (
+      ((e.target.id === 'burger' || e.target.className === 'burger-line') && menuOpen) ||
+      (e.target.className === 'overlay')
+      ) {
     burgerMenuDisable()
   }
 }

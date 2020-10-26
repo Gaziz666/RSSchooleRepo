@@ -3,6 +3,11 @@ const petsList = document.querySelector('#petsList');
 const pageNumber = document.querySelector('#pageNumber');
 const leftBtn = document.querySelectorAll('.leftButton');
 const rightBtn = document.querySelectorAll('.rightButton')
+const burger = document.querySelector('#burger');
+const header = document.querySelector('.header');
+const navigation = document.querySelector('.navi');
+const body = document.querySelector('body');
+let menuOpen = false
 
 // variable
 
@@ -36,6 +41,7 @@ async function getMainPets(n) {
     petsArr.push(petsArrItem)
   }
   drawPets()
+  burgerMenuDisable()
 }
 
 // remove class for nav menu inactive
@@ -100,6 +106,16 @@ const handleEvent = (e) => {
   // close popup
   if (e.target.className === 'popup-back' || e.target.className === 'close-button') {
     closePopup()
+  } //burger menu
+    else if ((e.target.id === 'burger' || e.target.className === 'burger-line black_bottom') && !menuOpen) {
+  
+      burgerMenuEnable()
+    
+  } else if (
+      ((e.target.id === 'burger' || e.target.className === 'burger-line black_bottom') && menuOpen) ||
+      (e.target.className === 'overlay')
+      ) {
+    burgerMenuDisable()
   }
 }
   // mouse over and out listener
@@ -275,6 +291,52 @@ const hoverButton = (e) => {
     document.querySelector('.close-button').style.background = 'none'
   }
   
+}
+
+//click on burger menu on 320 px
+
+const burgerMenuEnable = () => {
+  burger.classList.add('rotate')
+  burger.classList.remove('rotate-revers')
+  header.classList.add('bg-black')
+  navigation.classList.remove('to-right')
+  navigation.classList.add('to-left');
+  body.classList.add('not-scroll')
+  menuOpen = true;
+  const overlay = document.createElement('div')
+  overlay.classList.add('overlay')
+  document.querySelector('.pets-header').append(overlay)
+  document.querySelector('.logo_title').classList.remove('pet-header-logo-title_color__black')
+  document.querySelector('.logo_subtitle').classList.remove('pet-header-logo-subtitle_color__black');
+  document.querySelectorAll('.burger-line').forEach(item => item.classList.remove('black_bottom'))
+  document.querySelectorAll('.links').forEach((item, i) => {
+    if ( i < 2){
+      item.classList.add('main-page-link')
+      item.classList.remove('pets-link-color_dark')
+    }
+  })
+
+}
+
+const burgerMenuDisable = () => {
+  burger.classList.add('rotate-revers')
+  burger.classList.remove('rotate')
+  header.classList.remove('bg-black')
+  navigation.classList.add('to-right')
+  navigation.classList.remove('to-left')
+  body.classList.remove('not-scroll')
+  menuOpen = false
+  document.querySelector('.overlay').remove()
+  document.querySelector('.logo_title').classList.add('pet-header-logo-title_color__black')
+  document.querySelector('.logo_subtitle').classList.add('pet-header-logo-subtitle_color__black')
+  document.querySelectorAll('.burger-line').forEach(item => item.classList.add('black_bottom'))
+  document.querySelectorAll('.links').forEach((item, i) => {
+    if ( i < 2 ){
+      item.classList.remove('main-page-link')
+      item.classList.add('pets-link-color_dark')
+    }
+  })
+
 }
 
 // listeners

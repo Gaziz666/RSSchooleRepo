@@ -164,19 +164,31 @@
   .header {
     width: 320px;
     transition: .5s;
-    right: 0;
+    z-index: 2;
   }
   .header_margin__60{
-    margin: 0px 0 60px auto;
+    margin: 0 0 60px auto;
     padding-top: 60px;
     padding-bottom: 60px;
   }
   .logo{
     margin-left: 10px;
   }
+
+  .logo-burger{
+    width: 320px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
   .navi{
     position: absolute;
-    height: 733px;
+    z-index: 3;
+    height: 762px;
     width: 320px;
     top: 90px;
     padding: 158px 0 248px 0;
@@ -199,7 +211,7 @@
   .burger{
     visibility: visible;
     position: relative;
-    margin-right: 53px;
+    margin: 0px 53px 0 40px;
     cursor: pointer;
 
   }

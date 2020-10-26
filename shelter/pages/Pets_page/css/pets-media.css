@@ -39,7 +39,13 @@
   .pets-navi-buttons{
     margin: 0;
   }
-  .burger-line {
+  
+  .header_margin__30{
+    margin: 0 0 0px auto;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .black_bottom {
     border: 1px solid #000000;
   }
 }

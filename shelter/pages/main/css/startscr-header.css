@@ -87,6 +87,15 @@
   right: 0px;
   transition: 1s;
 }
+.overlay{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(41, 41, 41, 0.6);
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
 
 @keyframes rotating {
   0%   { transform: rotate(0deg); }
