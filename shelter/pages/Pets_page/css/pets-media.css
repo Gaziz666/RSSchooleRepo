@@ -1,0 +1,51 @@
+@media (max-width: 1279px)
+      and (min-width: 768px) {
+
+  .cards-container{
+    margin: 0 74px;
+    max-height: 1365px;
+    overflow: hidden;
+  }
+
+
+  .margin-top-30{
+    margin: 30px 20px 0;
+  }
+  .block-inner{
+    margin-bottom: 76px;
+  }
+}
+
+@media (max-width: 767px){
+  .cards-container{
+    max-height: 1365px;
+    max-width: 767px;
+    overflow: hidden;
+    justify-content: center;
+    margin-top: 27px
+  }
+  .header4{
+    font-size: 2.0rem;
+    line-height: 115%;
+  }
+  .margin-top-30{
+    margin: 15px 0;
+  }
+
+  .cards-navi{
+    margin-top: 57px;
+    width: 300px;
+  }
+  .pets-navi-buttons{
+    margin: 0;
+  }
+  
+  .header_margin__30{
+    margin: 0 0 0px auto;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .black_bottom {
+    border: 1px solid #000000;
+  }
+}

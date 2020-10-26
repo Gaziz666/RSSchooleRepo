@@ -1,0 +1,60 @@
+.our-friends{
+  background: #F6F6F6;
+}
+.our-friends-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pets-slider{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60px 0;
+  width: 100%;
+}
+
+.cards{
+  display: flex;
+  flex-direction: row;
+  flex-basis: 82.5%;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+.pet-image{
+  transition: all 2s ease-in-out;
+}
+
+.to-left{
+  animation-name: left;
+}
+.to-right{
+  animation-name: right;
+  animation-direction: reverse;
+}
+.from-left{
+  animation-name: left;
+  animation-direction: reverse;
+}
+.from-right{
+  animation-name: right;
+}
+@keyframes right {
+  from {
+    left: 0;
+  }
+  to {
+    right: 100%;
+  }
+}
+@keyframes left {
+  from {
+    left: 100%;
+  }
+  to {
+    right: 0;
+  }
+}

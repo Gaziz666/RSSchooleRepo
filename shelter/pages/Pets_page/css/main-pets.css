@@ -1,0 +1,73 @@
+.pets-main{
+  background: #F6F6F6;
+}
+
+.pets-inner{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 45px;
+}
+
+.margin-top-30{
+  min-width: 270px;
+  height: 435px;
+  background: #FAFAFA;
+  border-radius: 9px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 90px;
+  margin: 15px 0;
+}
+.margin-top-30:hover{
+  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+  background: #FFFFFF;
+  cursor: pointer;
+}
+
+.cards-navi{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 45px;
+}
+
+.pets-navi-buttons{
+  box-sizing: border-box;
+  border-radius: 100px;
+  width: 52px;
+  height: 52px;
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2rem;
+  line-height: 115%;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.buttons-inactive{
+  border: 2px solid #CDCDCD;
+  color: #CDCDCD;
+  background: none;
+}
+
+.buttons-active{
+  background: none;
+  color: #292929;
+  border: 2px solid #F1CDB3;
+}
+
+.buttons-number{
+  background: #F1CDB3;
+}

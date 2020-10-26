@@ -3,41 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/ui-kit.css" type="text/css">
-  <link rel="stylesheet" href="../../css/startscr-header.css">
-  <link rel="stylesheet" href="../../css/about.css">
-  <link rel="stylesheet" href="../../css/our-friends.css">
-  <link rel="stylesheet" href="../../css/help.css">
-  <link rel="stylesheet" href="../../css/donation.css">
-  <link rel="stylesheet" href="../../css/footer.css">
-
-  <link rel="stylesheet" href="../../css/media.css">
-  <title>Document</title>
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/ui-kit.css" type="text/css">
+  <link rel="stylesheet" href="./css/startscr-header.css">
+  <link rel="stylesheet" href="./css/about.css">
+  <link rel="stylesheet" href="./css/our-friends.css">
+  <link rel="stylesheet" href="./css/help.css">
+  <link rel="stylesheet" href="./css/donation.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="./css/popup.css">
+  <link rel="stylesheet" href="./css/media.css">
+  <title>shelter-main</title>
 </head>
 <body>
 
   <main class="not-only block">
 
-    <header class="header">
-
-      <h1 class="not-visible">Cozy House</h1>
-
-      <div class="logo header-logo_flex">
-        <div class="logo_title">Cozy House</div>
-        <div class="logo_subtitle">Shelter for pets in Boston</div>
-      </div>
-
-      <nav class="navi">
-        <ul>
-          <li class="active"><a class="links" href="">About the shelter</a></li>
-          <li><a class="links" href="">Our pets</a></li>
-          <li><a class="links" href="">Help the shelter</a></li>
-          <li><a class="links" href="">Contacts</a></li>
-        </ul>
-      </nav>
-
-    </header>
+    <div class="header-container">
+      <header class="header header_margin__60">
+      
+        <h1 class="not-visible">Cozy House</h1>
+        
+        <div class="logo-burger">
+          <div class="logo header-logo_flex">
+            <div class="logo_title">Cozy House</div>
+            <div class="logo_subtitle">Shelter for pets in Boston</div>
+          </div>
+    
+          <div id="burger" class="non-visible burger">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+          </div>
+        </div>
+  
+        <nav class="navi to-right">
+          <ul>
+            <li key="0" class="navi-links active">
+              <a class="links main-page-link" href="/pages/main/index.html">About the shelter</a>
+            </li>
+            <li id="aboutPage" key="1" class="navi-links">
+              <a class="links main-page-link" href="/pages/Pets_page/Pets-page.html">Our pets</a>
+            </li>
+            <li class="navi-links">
+              <a class="links main-page-link" href="">Help the shelter</a>
+            </li>
+            <li class="navi-links">
+              <a class="links main-page-link" href="">Contacts</a>
+            </li>
+          </ul>
+        </nav>
+  
+        
+      </header>
+    </div>
+    
 
     <article class="start-screen">
 
@@ -51,9 +71,14 @@
           wide and open heart. He or she will love you more than anybody else 
           in the world, you will see!
         </p>
-        <button class="button-primary_text button-primary_bcg-orange">
-          Make a friend
-        </button>
+        <div>
+          <form action="/pages/Pets_page/Pets-page.html">
+            <button class="button-primary_text button-primary_bcg-orange button-primary_center">
+          </form>
+            Make a friend
+          </button>
+        </div>
+        
       </div>
 
       <div class="start-screen-puppy">
@@ -74,13 +99,13 @@
           About the shelter<br>
           “Cozy House”
         </h3>
-        <p class="paragraph-L about-text-p_padding">
+        <p class="paragraph-L about-text-p_padding about-text-p_mobile">
           Currently we have 121 dogs and 342 cats on our 
           hands and statistics show that only 20% of them will find a family. 
           The others will continue to live with us and will be waiting 
           for a lucky chance to become dearly loved.
         </p>
-        <p class="paragraph-L">
+        <p class="paragraph-L about-text-p_mobile">
           We feed our wards with the best food and make sure that they do not get sick, 
           feel comfortable (including psychologically) and well. We are supported 
           by 87 volunteers and 28 employees of various skill levels. About 12% of 
@@ -100,49 +125,39 @@
 
       <div class="pets-slider">
 
-        <button class="button-arrow">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <button class="button-arrow left no-visible_320_">
+          <svg width="45" height="45" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M33 25V27H22V29L19 26L22 23V25H33Z" fill="#292929"/>
           </svg>
         </button>
 
         <div class="cards">
-
-          <div class="card">
-            <div class="card_image">
-              <img src="../../assets/images/pets-slider1.png" alt="pet-image">
-            </div>
-            <h4 class="header4">Katrine</h4>
-            <button class="button-primary_text button_margin-bottom">Learn more</button>
-          </div>
-
-          <div class="card">
-            <div class="card_image">
-              <img src="../../assets/images/pets-slider2.png" alt="pet-image">
-            </div>
-            <h4 class="header4">Jennifer</h4>
-            <button class="button-primary_text button_margin-bottom">Learn more</button>
-          </div>
-
-          <div class="card">
-            <div class="card_image">
-              <img src="../../assets/images/pets-slider3.png" alt="pet-image">
-            </div>
-            <h4 class="header4">Woody</h4>
-            <button class="button-primary_text button_margin-bottom">Learn more</button>
-          </div>
-          
         </div>
 
-        <button class="button-arrow">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="no-visible_768_ button_320-friends">
+          <button class="button-arrow left no-visible_768_">
+            <svg width="45" height="45" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M33 25V27H22V29L19 26L22 23V25H33Z" fill="#292929"/>
+            </svg>
+          </button>
+          <button class="button-arrow right">
+            <svg width="45" height="45" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 27V25H30V23L33 26L30 29V27H19Z" fill="#292929"/>
+              </svg>
+          </button>
+        </div>
+
+        <button class="button-arrow right no-visible_320_">
+          <svg width="45" height="45" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 27V25H30V23L33 26L30 29V27H19Z" fill="#292929"/>
             </svg>
         </button>
 
       </div>
 
-      <button class="button-primary_text button-primary_bcg-orange">Get to know the rest</button>
+      <form action="/pages/Pets_page/Pets-page.html">
+        <button class="button-primary_text button-primary_bcg-orange">Get to know the rest</button>
+      </form>
 
     </div>
   </section>
@@ -274,9 +289,9 @@
           <h4 class="header4"><a class="header4" href="">8380 2880 8028 8791 7435</a></h4>
         </div>
 
-        <p class="paragraph-S">Legal information and lorem ipsum dolor sit amet, consectetur <br>
-          adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac <br>
-          diam. Praesent ultrices maximus tortor et vulputate. Interdum et <br>
+        <p class="paragraph-S">Legal information and lorem ipsum dolor sit amet, consectetur 
+          adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac 
+          diam. Praesent ultrices maximus tortor et vulputate. Interdum et 
           malesuada fames ac ante ipsum primis in faucibus.
         </p>
 
@@ -289,7 +304,7 @@
     <div class="footer-content">
       <div class="footer-card">
 
-        <h3 class="header3 header_color-w margin-bottom_40">For questions<br> 
+        <h3 class="header3 header_color-w margin-bottom_40 max-width_279">For questions 
           and suggestions</h3>
 
         <div class="mail color-orange margin-bottom_40">
@@ -299,7 +314,7 @@
               <path d="M28.374 13.2424C26.451 13.2424 24.8865 14.8302 24.8865 16.782C24.8865 18.7337 26.451 20.3215 28.374 20.3215C30.297 20.3215 31.8615 18.7337 31.8615 16.782C31.8615 14.8302 30.2969 13.2424 28.374 13.2424ZM28.374 18.9311C27.2065 18.9311 26.2565 17.967 26.2565 16.782C26.2565 15.5969 27.2064 14.6328 28.374 14.6328C29.5416 14.6328 30.4916 15.5969 30.4916 16.782C30.4916 17.967 29.5415 18.9311 28.374 18.9311Z" fill="#F1CDB3"/>
             </svg>
           </a>
-          <a class="header4 color-orange" href="mailto:email@shelter.com">email@shelter.com</a>
+          <a class="header4_color-orange" href="mailto:email@shelter.com">email@shelter.com</a>
         </div>
 
         <div class="mail color-orange">
@@ -311,35 +326,35 @@
               <path d="M20 21.1847C21.4717 21.1847 22.6691 19.9578 22.6691 18.4497C22.6691 16.9416 21.4717 15.7147 20 15.7147C18.5283 15.7147 17.3309 16.9416 17.3309 18.4497C17.3309 19.9578 18.5283 21.1847 20 21.1847ZM20 17.1514C20.6987 17.1514 21.267 17.7338 21.267 18.4497C21.267 19.1656 20.6987 19.7479 20 19.7479C19.3014 19.7479 18.733 19.1656 18.733 18.4497C18.733 17.7339 19.3014 17.1514 20 17.1514Z" fill="#F1CDB3"/>
             </svg>
           </a>
-          <a class="header4 color-orange" href="tel:+13 674 567 75 54">+13 674 567 75 54</a>
+          <a class="header4_color-orange" href="tel:+13 674 567 75 54">+13 674 567 75 54</a>
         </div>
 
       </div>
 
       <div class="footer-card footer-card_margin-left">
 
-        <h3 class="header3 header_color-w margin-bottom_35">We are waiting<br> 
+        <h3 class="header3 header_color-w margin-bottom_35 max-width_279">We are waiting 
           for your visit</h3>
 
-        <div class="mail color-orange margin-bottom_32">
+        <div class="mail adress color-orange margin-bottom_32">
           <a href="https://goo.gl/maps/infUzDKwJkJs2yCB6" target="_blank">
             <svg width="22" height="32" viewBox="0 0 22 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M11 0C4.93471 0 0 4.78519 0 10.6667C0 12.4323 0.455231 14.1829 1.32064 15.7357L10.3985 31.6562C10.5193 31.8685 10.7496 32 11 32C11.2504 32 11.4807 31.8685 11.6015 31.6562L20.6827 15.7304C21.5448 14.1829 22 12.4323 22 10.6666C22 4.78519 17.0653 0 11 0ZM19.4762 15.0905L11 29.9557L2.52714 15.0964C1.77317 13.7435 1.37504 12.2116 1.37504 10.6667C1.37504 5.52019 5.69275 1.33337 11 1.33337C16.3073 1.33337 20.625 5.52025 20.625 10.6667C20.625 12.2116 20.2268 13.7435 19.4762 15.0905Z" fill="#F1CDB3"/>
               <path d="M11 5.33329C7.96737 5.33329 5.50005 7.72585 5.50005 10.6666C5.50005 13.6074 7.96737 16 11 16C14.0327 16 16.5 13.6074 16.5 10.6667C16.5 7.72592 14.0327 5.33329 11 5.33329ZM11 14.6667C8.72534 14.6667 6.87502 12.8724 6.87502 10.6667C6.87502 8.46092 8.72534 6.66667 11 6.66667C13.2747 6.66667 15.125 8.46092 15.125 10.6667C15.125 12.8724 13.2747 14.6667 11 14.6667Z" fill="#F1CDB3"/>
             </svg>
           </a>
-          <a href="https://goo.gl/maps/infUzDKwJkJs2yCB6" target="_blank" class="header4 color-orange">1 Central Street, Boston<br> 
+          <a href="https://goo.gl/maps/infUzDKwJkJs2yCB6" target="_blank" class="header4_color-orange">1 Central Street, Boston<br> 
             (entrance from the store)</a>
         </div>
 
-        <div class="mail color-orange">
+        <div class="mail adress color-orange">
           <a href="https://goo.gl/maps/infUzDKwJkJs2yCB6" target="_blank">
             <svg width="22" height="32" viewBox="0 0 22 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M11 0C4.93471 0 0 4.78519 0 10.6667C0 12.4323 0.455231 14.1829 1.32064 15.7357L10.3985 31.6562C10.5193 31.8685 10.7496 32 11 32C11.2504 32 11.4807 31.8685 11.6015 31.6562L20.6827 15.7304C21.5448 14.1829 22 12.4323 22 10.6666C22 4.78519 17.0653 0 11 0ZM19.4762 15.0905L11 29.9557L2.52714 15.0964C1.77317 13.7435 1.37504 12.2116 1.37504 10.6667C1.37504 5.52019 5.69275 1.33337 11 1.33337C16.3073 1.33337 20.625 5.52025 20.625 10.6667C20.625 12.2116 20.2268 13.7435 19.4762 15.0905Z" fill="#F1CDB3"/>
               <path d="M11 5.33329C7.96737 5.33329 5.50005 7.72585 5.50005 10.6666C5.50005 13.6074 7.96737 16 11 16C14.0327 16 16.5 13.6074 16.5 10.6667C16.5 7.72592 14.0327 5.33329 11 5.33329ZM11 14.6667C8.72534 14.6667 6.87502 12.8724 6.87502 10.6667C6.87502 8.46092 8.72534 6.66667 11 6.66667C13.2747 6.66667 15.125 8.46092 15.125 10.6667C15.125 12.8724 13.2747 14.6667 11 14.6667Z" fill="#F1CDB3"/>
             </svg>
           </a>
-          <a class="header4 color-orange" href="https://goo.gl/maps/infUzDKwJkJs2yCB6" target="_blank">18 South Park, London </a>
+          <a class="header4_color-orange" href="https://goo.gl/maps/infUzDKwJkJs2yCB6" target="_blank">18 South Park, London </a>
         </div>
 
       </div>
@@ -351,5 +366,6 @@
     </div>
   </footer>
 
+  <script src="/pages/main/main-script.js"></script>
 </body>
 </html>
