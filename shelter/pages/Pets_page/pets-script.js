@@ -296,7 +296,7 @@ const hoverButton = (e) => {
 //click on burger menu on 320 px
 
 const burgerMenuEnable = () => {
-  document.querySelector('#header').classList.remove('sticky')
+  document.querySelector('#header').classList.add('height')
   burger.classList.add('rotate')
   burger.classList.remove('rotate-revers')
   header.classList.add('bg-black')
@@ -337,7 +337,8 @@ const burgerMenuDisable = () => {
       item.classList.add('pets-link-color_dark')
     }
   })
-  setTimeout(document.querySelector('#header').classList.add('sticky'), 500)
+  setTimeout(document.querySelector('#header').classList.remove('height'), 500)
+
 
 }
 
