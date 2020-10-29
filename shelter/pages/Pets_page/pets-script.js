@@ -233,6 +233,8 @@ const showCurrentPage = () => {
 // close popup on click
 const closePopup = (e) => {
   document.querySelector('.popup-back').remove()
+  body.classList.remove('not-scroll')
+
 }
 
 // POPUP block draw
@@ -280,6 +282,8 @@ const popup = (e) => {
   content.append(divText);
   divText.append(divTextInner);
   content.append(closeButton);
+  body.classList.add('not-scroll')
+
 }
 
 // hover effect for button krestik
