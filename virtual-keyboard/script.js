@@ -211,20 +211,43 @@ const Keyboard = {
         default:
           keyElement.textContent = key.toLowerCase();
 
+          let currentPosition = 0
+          
+
           keyElement.addEventListener('click', () => {
+            // check current position after arrow button
+            let start = this.properties.value.substr(0, this.DOMElement.textArea.selectionEnd);
+            let end = this.properties.value.substr(this.DOMElement.textArea.selectionEnd);
             // check for keypress shift and capsLock keys
             if(this.properties.shift && this.properties.capsLock){
-              this.properties.value += this.shiftKeys[this.properties.lang][index].toLowerCase()
-            } else if(this.properties.capsLock && !this.properties.shift) {
-              this.properties.value += this.unShiftKeys[this.properties.lang][index].toUpperCase();
-            } else if (this.properties.shift) {
-              this.properties.value += this.shiftKeys[this.properties.lang][index]
-            } else {
-              this.properties.value += this.unShiftKeys[this.properties.lang][index]
+              this.properties.value = 
+                start + this.shiftKeys[this.properties.lang][index].toLowerCase() + end;
+              currentPosition = this.DOMElement.textArea.selectionStart;
+            } 
+            else if(this.properties.capsLock && !this.properties.shift) {
+              this.properties.value = 
+                start + this.unShiftKeys[this.properties.lang][index].toUpperCase() + end;
+              currentPosition = this.DOMElement.textArea.selectionStart;
+            } 
+            else if (this.properties.shift) {
+              this.properties.value = 
+                start + this.shiftKeys[this.properties.lang][index] + end;
+              currentPosition = this.DOMElement.textArea.selectionStart;
+            } 
+            else {
+              this.properties.value = 
+                this.properties.value.substr(0, this.DOMElement.textArea.selectionEnd) + 
+                this.unShiftKeys[this.properties.lang][index] + 
+                this.properties.value.substr(this.DOMElement.textArea.selectionEnd);
+              currentPosition = this.DOMElement.textArea.selectionStart;
             }
-
+           
             this._triggerEvents('oninput')
+            
+            this.DOMElement.textArea.selectionEnd = currentPosition + 1
+            
             this.DOMElement.textArea.focus()
+            
             if(this.properties.shift) {
               this._toggleShift()
             }
@@ -279,7 +302,6 @@ const Keyboard = {
           this.elements.keys[i].textContent = this.properties.capsLock ? 
             this.unShiftKeys[this.properties.lang][i].toUpperCase() : 
             this.unShiftKeys[this.properties.lang][i]
-            console.log('lang press')
         }
       }
     }
