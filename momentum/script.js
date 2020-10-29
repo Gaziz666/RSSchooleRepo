@@ -148,7 +148,7 @@ const setName = (e) => {
       name.blur()
     }
   }else if (name.textContent === ' ' || name.textContent === ''){
-    name.textContent = '[Enter name]'
+    getName()
   } else {
     localStorage.setItem('name', e.target.innerText)   
   }
@@ -171,7 +171,7 @@ const setFocus = (e) => {
       focus.blur()
     }
   }else if (focus.textContent === ' ' || focus.textContent === ''){
-    focus.textContent = '[Enter focus]'
+    getFocus()
   } else {
     localStorage.setItem('focus', e.target.innerText)   
   }
@@ -179,23 +179,17 @@ const setFocus = (e) => {
 
 // Delete default name onClick
 const delDefaultName = (e) => {
-  if (name.textContent === '[Enter name]') {
     name.textContent = ''
-  }
 }
 
 // Delete default focus onClick
 const delDefaultFocus = (e) => {
-  if (focus.textContent === '[Enter focus]') {
     focus.textContent = ''
-  }
 }
 
 // Delete default city onClick
 const delDefaultCity = (e) => {
-  if (city.textContent === '[Enter city]') {
     city.textContent = ''
-  }
 }
 
 // change background img
@@ -264,7 +258,7 @@ function setCity(e) {
   if (e.type === 'keypress') {
     if (e.keyCode === 13) {
       if (city.textContent === ''){
-        city.textContent = localStorage.getItem('city')
+        getCity()
       }else {
       localStorage.setItem('city', e.target.innerText);
       city.blur()
@@ -272,7 +266,7 @@ function setCity(e) {
       }
     }
   }else if (city.textContent === ' ' || city.textContent === ''){
-    city.textContent = '[Enter city]'
+    getCity()
   } else {
     localStorage.setItem('city', e.target.innerText)   
   }
