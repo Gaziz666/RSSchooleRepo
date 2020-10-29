@@ -1,5 +1,6 @@
 .header_margin__30 {
   margin: 30px auto;
+
 }
 
 .pet-header-logo-title_color__black{
@@ -18,4 +19,15 @@
   color:#F1CDB3;
   cursor: pointer;
 }
+.sticky{
+  position: sticky;
+  top: 0;
+  right: 0;
+  background: white;
+}
+.height {
+  height: 823px;
+  background: none;  
+}
+
 
