@@ -6,6 +6,7 @@
   font-size: 20px;
   height: calc(100vh - 380px);
   min-height: 300px;
+  cursor: text;
 }
 
 .keyboard {
@@ -49,12 +50,15 @@
   position: relative;
 }
 
-.keyboard__key:active {
+button {
   
-  border-radius: 10px;
-  color: #08ff00;
 }
-.keyboard__key:hover {
+.active {  
+  animation: bckg .6s linear forwards;
+}
+
+
+.hover:hover {
   background: rgba(255, 255, 255, 0.12);
 }
 
@@ -89,4 +93,15 @@
 i {
   width: 24px;
   height: 24px;
+}
+
+@keyframes bckg {
+  0%   {  background: rgba(255, 255, 255, 0.12); 
+          border-radius: 0px;}
+  50% {
+          background: #08ff00; 
+          border-radius: 10px;
+  }
+  100% {  background: rgba(255, 255, 255, 0.12); 
+          border-radius: 0px;}
 }
