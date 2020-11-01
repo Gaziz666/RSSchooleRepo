@@ -381,7 +381,7 @@ const Keyboard = {
         break; 
 
         case "mic":
-          keyElement.innerHTML = createIconHTML("mic");
+          keyElement.innerHTML = createIconHTML("mic-none");
           keyElement.setAttribute('data-key', key)
           
           
@@ -392,11 +392,20 @@ const Keyboard = {
 
           keyElement.addEventListener("click", () => {
             
+            keyElement.classList.add('active')
+            keyElement.addEventListener('animationend', () =>{
+              keyElement.classList.remove('active')
+            })
             this.properties.mic = !this.properties.mic
             if (this.properties.mic) {
+              keyElement.innerHTML = createIconHTML("mic");
+            } else {
+              keyElement.innerHTML = createIconHTML("mic-none");
+            }
+            
               recognition.interimResults = true;
               this.properties.lang === 'en' ?
-              recognition.lang = 'en-US' : recognition.lang = 'ru'
+              recognition.lang = 'en-US' : recognition.lang = 'ru-RU'
               console.log('click')
               let resultText = ''
               recognition.addEventListener('result', e => {
@@ -410,7 +419,7 @@ const Keyboard = {
                 console.log(transcript)
               });
             
-                //
+          
 
               recognition.addEventListener('end', () => {
                 let start = this.properties.value.substr(0, this.DOMElement.textArea.selectionStart);
@@ -422,17 +431,22 @@ const Keyboard = {
                 this.DOMElement.textArea.focus()
                 console.log(this.properties.mic)
                 resultText = ''
-                
-                recognition.start();
-          
-                
+                if (this.properties.mic) {
+                  recognition.start();
+                  console.log('work start inner')
+                } else {
+                  recognition.stop();
+                  console.log('work stop inner')
+                }
               })
-              
+              if (this.properties.mic) {
                 recognition.start();
-              
-            } else {
-              recognition.stop();
-            }
+                console.log('work start obshii')
+              } else {
+                recognition.stop();
+                console.log('work stop obshii')
+              }
+          
           })
 
           
