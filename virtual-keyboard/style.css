@@ -57,6 +57,12 @@ button {
   animation: bckg .6s linear forwards;
 }
 
+.activation {
+  animation: greenBg .6s linear forwards;
+}
+.deactivation {
+  animation: greyBg .6s linear forwards;
+}
 
 .hover:hover {
   background: rgba(255, 255, 255, 0.12);
@@ -104,4 +110,21 @@ i {
   }
   100% {  background: rgba(255, 255, 255, 0.12); 
           border-radius: 0px;}
+}
+@keyframes greenBg {
+  0%   {  background: rgba(255, 255, 255, 0.12); 
+          border-radius: 0px;}
+  100% {
+          background: #08ff00; 
+          border-radius: 10px;
+  }
+}
+
+@keyframes greyBg {
+  0%   {  background: #08ff00; 
+          border-radius: 10px;}
+  100% {
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 0px;
+  }
 }
