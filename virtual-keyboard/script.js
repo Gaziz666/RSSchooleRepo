@@ -11,14 +11,14 @@ const Keyboard = {
       "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "{" ,"}" , "|",
      "caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", ":", "\"", "enter",
      "SHIFT", "Z", "X", "C", "V", "B", "N", "M", "<", ">", "?", "SHIFT",
-      "done", "space", "en", "left", "right", "mute"
+      "done", "space", "en", "left", "right", "mute", "mic"
     ],
     ру: [
       "[", "!", "\"", "№", ";", "%", ":", "?", "*", "(", ")", "_", "+", "backspace",
       "Й", "Ц", "У", "К", "Е", "Н", "Г", "Ш", "Щ", "З", "Х", "Ъ", "/",
      "caps", "Ф", "Ы", "В", "А", "П", "Р", "О", "Л", "Д", "Ж", "Э", "enter",
      "SHIFT", "Я", "Ч", "С", "М", "И", "Т", "Ь", "Б", "Ю", ".", "SHIFT",
-      "done", "space", "РУ", "left", "right", "mute"
+      "done", "space", "РУ", "left", "right", "mute", "mic"
     ]
   },
 
@@ -28,14 +28,14 @@ const Keyboard = {
       "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\",
      "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
      "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "shift",
-      "done", "space", "en", "left", "right", "mute"
+      "done", "space", "en", "left", "right", "mute", "mic"
    ],
    ру: [
     "]", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace",
      "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\\",
     "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
     "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "shift",
-    "done", "space", "ру", "left", "right", "mute"
+    "done", "space", "ру", "left", "right", "mute", "mic"
   ]
   },
 
@@ -50,6 +50,7 @@ const Keyboard = {
     shift: false,
     lang: 'en',
     mute: false,
+    mic: false,
   },
 
   DOMElement: {
@@ -106,7 +107,7 @@ const Keyboard = {
         "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\",
       "CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "Enter",
       "Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "Shift",
-       "done", "Space", "en", "ArrowLeft", "ArrowRight", "mute"
+       "done", "Space", "en", "ArrowLeft", "ArrowRight", "mute", "mic"
     ]
     
 
@@ -344,7 +345,7 @@ const Keyboard = {
         break; 
 
         case "done":
-          keyElement.innerHTML = createIconHTML("keyboard-hide");
+          keyElement.innerHTML = createIconHTML("keyboard");
             
           keyElement.addEventListener("click", () => {
               keyElement.classList.add('active')
@@ -377,6 +378,64 @@ const Keyboard = {
             audio.currentTime = 0;
             this.properties.mute ? console.log('mute'): audio.play();
           })
+        break; 
+
+        case "mic":
+          keyElement.innerHTML = createIconHTML("mic");
+          keyElement.setAttribute('data-key', key)
+          
+          
+          let currentPosit = 0
+
+          window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+          const recognition = new SpeechRecognition();
+
+          keyElement.addEventListener("click", () => {
+            
+            this.properties.mic = !this.properties.mic
+            if (this.properties.mic) {
+              recognition.interimResults = true;
+              this.properties.lang === 'en' ?
+              recognition.lang = 'en-US' : recognition.lang = 'ru'
+              console.log('click')
+              let resultText = ''
+              recognition.addEventListener('result', e => {
+                
+                const transcript = Array.from(e.results)
+                  .map(result => result[0])
+                  .map(result => result.transcript)
+                  .join('');
+
+                resultText = transcript
+                console.log(transcript)
+              });
+            
+                //
+
+              recognition.addEventListener('end', () => {
+                let start = this.properties.value.substr(0, this.DOMElement.textArea.selectionStart);
+                let end = this.properties.value.substr(this.DOMElement.textArea.selectionEnd);
+                this.properties.value = start + resultText + end;
+                currentPosit = this.DOMElement.textArea.selectionStart;
+                this._triggerEvents('oninput')
+                this.DOMElement.textArea.selectionEnd =  currentPosit + resultText.length
+                this.DOMElement.textArea.focus()
+                console.log(this.properties.mic)
+                resultText = ''
+                
+                recognition.start();
+          
+                
+              })
+              
+                recognition.start();
+              
+            } else {
+              recognition.stop();
+            }
+          })
+
+          
           break; 
           
         default:

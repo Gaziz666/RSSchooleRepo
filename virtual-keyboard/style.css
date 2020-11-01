@@ -31,7 +31,7 @@
 
 .keyboard__key {
   height: 45px;
-  width: 6%;
+  width: 5%;
   max-width: 90px;
   margin: 3px;
   border-radius: 4px;
@@ -50,9 +50,6 @@
   position: relative;
 }
 
-button {
-  
-}
 .active {  
   animation: bckg .6s linear forwards;
 }
@@ -69,7 +66,7 @@ button {
 }
 
 .keyboard__key--wide {
-  width: 12%;
+  width: 11%;
 }
 
 .keyboard__key--extra-wide {
