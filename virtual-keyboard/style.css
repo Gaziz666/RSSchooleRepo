@@ -31,7 +31,7 @@
 
 .keyboard__key {
   height: 45px;
-  width: 6%;
+  width: 5%;
   max-width: 90px;
   margin: 3px;
   border-radius: 4px;
@@ -50,20 +50,23 @@
   position: relative;
 }
 
-button {
-  
-}
 .active {  
   animation: bckg .6s linear forwards;
 }
 
+.activation {
+  animation: greenBg .6s linear forwards;
+}
+.deactivation {
+  animation: greyBg .6s linear forwards;
+}
 
 .hover:hover {
   background: rgba(255, 255, 255, 0.12);
 }
 
 .keyboard__key--wide {
-  width: 12%;
+  width: 11%;
 }
 
 .keyboard__key--extra-wide {
@@ -104,4 +107,21 @@ i {
   }
   100% {  background: rgba(255, 255, 255, 0.12); 
           border-radius: 0px;}
+}
+@keyframes greenBg {
+  0%   {  background: rgba(255, 255, 255, 0.12); 
+          border-radius: 0px;}
+  100% {
+          background: #08ff00; 
+          border-radius: 10px;
+  }
+}
+
+@keyframes greyBg {
+  0%   {  background: #08ff00; 
+          border-radius: 10px;}
+  100% {
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 0px;
+  }
 }
