@@ -1,3 +1,4 @@
-import number from './digits.js';
+/* eslint-disable import/extensions */
+import type from './4*4.js';
 
-export default { number };
+export default { type };

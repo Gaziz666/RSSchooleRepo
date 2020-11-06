@@ -1,12 +1,6 @@
-import _ from 'lodash';
+/* eslint-disable import/extensions */
+//import _ from 'lodash';
+import GamePuzzle from './gem-puzzle.js';
+import gameType from './layouts/index.js';
 
-function component() {
-  const element = document.createElement('div');
-
-  // Lodash, currently included via a script, is required for this line to work
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-  return element;
-}
-
-document.body.appendChild(component());
+new GamePuzzle(gameType).init(4).generateLayout(16);
