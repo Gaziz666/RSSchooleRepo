@@ -50,11 +50,16 @@ body {
   user-select: none;
   border-radius: 5px;
   -webkit-border-radius: 5px;
-  padding: 30% 0;
+  height: 120px;
+  width: 120px;
+  cursor: pointer;
 }
 
 .empty{
-  border: none;
-  background: none;
-  color:  #8ed790;
+  visibility: hidden;
+}
+
+.dragging {
+  position: absolute;
+  z-index: 100;
 }
