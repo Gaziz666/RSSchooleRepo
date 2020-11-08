@@ -1,0 +1,24 @@
+.popup{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.menu{
+  list-style: none;
+  font-size: 2rem;
+  color: #e7d809;
+  margin: 30px auto;
+  padding: 0;
+  text-align: center;
+}
+
+.list{
+  margin: 10px;
+}
+.list span{
+  cursor: pointer;
+}
