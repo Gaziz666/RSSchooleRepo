@@ -22,3 +22,12 @@
 .list span{
   cursor: pointer;
 }
+
+.material-icons {
+  color: white;
+  font-size: 2.5rem;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  cursor: pointer;
+}

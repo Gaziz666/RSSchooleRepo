@@ -4,7 +4,6 @@ import create from './utils/create.js';
 import GamePuzzle from './gem-puzzle.js';
 import gameType from './layouts/index.js';
 import { set, get } from './storage.js';
-import Timer from './timer.js';
 
 export default function preHandleEvent() {
   if (get('isPause') === 'yes') return;
@@ -15,7 +14,10 @@ export default function preHandleEvent() {
       create('li', 'list', '<span class="pause-buttons">Save game</span>', null, ['game', 'save']),
       create('li', 'list', '<span class="pause-buttons">Load game</span>', null, ['game', 'saved']),
       create('li', 'list', '<span class="pause-buttons">Best score</span>', null, ['game', 'score'])]);
-  const popup = create('div', 'popup', listMenu);
+  const icon = get('mute') === 'no'
+    ? create('i', 'material-icons', 'volume_up')
+    : create('i', 'material-icons', 'volume_off');
+  const popup = create('div', 'popup', [listMenu, icon]);
   document.querySelector('.game-container').append(popup);
   set('isPause', 'yes');
 
@@ -26,7 +28,6 @@ export default function preHandleEvent() {
     const startOrder = get('chipOrder');
     const sec = document.querySelector('.sec');
     const min = document.querySelector('.min');
-    let saveCount = 0;
     const saveOrder = [];
     const saveChip = {};
 
@@ -73,6 +74,17 @@ export default function preHandleEvent() {
     }
   };
 
+  const audioEvent = () => {
+    if (get('mute') === 'no') {
+      icon.innerHTML = 'volume_off';
+      set('mute', 'yes');
+    } else {
+      icon.innerHTML = 'volume_up';
+      set('mute', 'no');
+    }
+  };
+
   const buttons = document.querySelectorAll('.pause-buttons');
   buttons.forEach((button) => button.addEventListener('click', gameMenuEvent));
+  icon.addEventListener('click', audioEvent);
 }

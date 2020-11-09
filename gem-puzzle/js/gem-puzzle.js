@@ -5,7 +5,7 @@ import create from './utils/create.js';
 import Chip from './chip.js';
 import PreHandleEvent from './preHandleEvent.js';
 import HandleEventPause from './handleEventPause.js';
-import { set, get, remove } from './storage.js';
+import { set, get } from './storage.js';
 import Timer from './timer.js';
 
 const timer = create('div', 'timer-container',
@@ -17,6 +17,7 @@ const counter = create('div', 'counter-container',
   [create('span', 'description', 'Movies:'), create('span', 'counter', '0')]);
 const pause = create('button', 'pause', 'Pause Game');
 const resume = create('button', 'pause visible', 'Resume Game');
+create('audio', 'audio', null, document.body, ['src', './../assets/audio/audio.wav']);
 
 export default class GemPuzzle {
   constructor(gameType) {
@@ -39,6 +40,7 @@ export default class GemPuzzle {
     set('countMovie', 0);
     set('isPause', 'no');
     set('isRestart', 'no');
+    set('mute', 'no');
 
     new Timer().start();
     document.querySelector('.counter').innerHTML = get('countMovie');

@@ -1,3 +1,6 @@
+/* eslint-disable import/extensions */
+import { get } from './storage.js';
+
 // eventlistner mousedown
 export default function preHandleEvent(e) {
   const chip = e.target.closest('.chip');
@@ -5,10 +8,14 @@ export default function preHandleEvent(e) {
   const shiftX = e.clientX - chip.getBoundingClientRect().left;
   const shiftY = e.clientY - chip.getBoundingClientRect().top;
   const emptyChip = document.querySelector('.empty');
+  const audio = document.querySelector('.audio');
   let elemEmpty = null;
   let dragElement = null;
   let isMouseMove = false;
 
+  if (get('mute') === 'no') {
+    audio.play();
+  }
   // check if chip is empty (0)
   if (e.target.closest('.empty')) return;
 
