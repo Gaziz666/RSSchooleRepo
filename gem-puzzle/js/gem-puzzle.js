@@ -1,13 +1,18 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/extensions */
 import create from './utils/create.js';
 import Chip from './chip.js';
 import PreHandleEvent from './preHandleEvent.js';
-import HandleEvent from './handleEventPause.js';
+import HandleEventPause from './handleEventPause.js';
+import { set, get, remove } from './storage.js';
+import Timer from './timer.js';
 
 const timer = create('div', 'timer-container',
   [create('span', 'description', 'Time:'), create('div', 'timer',
-    [create('span', 'min'), create('span', 'sec')])]);
+    [create('span', 'min'),
+      create('span', null, ':'),
+      create('span', 'sec')])]);
 const counter = create('div', 'counter-container',
   [create('span', 'description', 'Movies:'), create('span', 'counter', '0')]);
 const pause = create('button', 'pause', 'Pause Game');
@@ -31,12 +36,12 @@ export default class GemPuzzle {
     this.container = create('div', 'game-container', null, this.main);
     document.body.prepend(this.main);
 
-    localStorage.setItem('countMovie', 0);
-    localStorage.setItem('isPause', 'no');
-    localStorage.setItem('isResume', 'no');
+    set('countMovie', 0);
+    set('isPause', 'no');
+    set('isRestart', 'no');
 
-    this.showTimer();
-    document.querySelector('.counter').innerHTML = localStorage.getItem('countMovie');
+    new Timer().start();
+    document.querySelector('.counter').innerHTML = get('countMovie');
     return this;
   }
 
@@ -48,43 +53,35 @@ export default class GemPuzzle {
       }
     }
 
-    this.chipArr.sort(() => Math.random() - 0.5);
+    // random chip and check is game has a win?
+    let sum = 1;
+    while (sum % 2 > 0) {
+      sum = 0;
+      this.chipArr.sort(() => Math.random() - 0.5);
+
+      for (let i = 0; i < this.chipArr.length; i += 1) {
+        for (let j = i + 1; j < this.chipArr.length; j += 1) {
+          if ((this.chipArr[i].number > this.chipArr[j].number) && this.chipArr[j].number !== 0) {
+            sum += 1;
+          }
+        }
+
+        if (this.chipArr[i].number === 0) {
+          sum += Math.trunc((i) / 4) + 1;
+        }
+      }
+    }
+
     this.chipArr.forEach((item, i) => {
-      this.container.append(item.chip);
+      document.querySelector('.game-container').append(item.chip);
       item.chip.style.order = i;
       this.chipOrder.push(item.chip.dataset.key);
       // eventListener mousedown on chip
       item.chip.onmousedown = PreHandleEvent;
     });
     // memories start position of chips
-    localStorage.setItem('chipOrder', this.chipOrder);
+    set('chipOrder', this.chipOrder);
     // event Listener for buttons Resume
-    pause.addEventListener('click', HandleEvent);
-  }
-
-  showTimer = () => {
-    if (localStorage.getItem('isResume') === 'yes') {
-      this.sec = 0;
-      this.min = 0;
-      localStorage.setItem('isResume', 'no');
-    }
-
-    document.querySelector('.min').innerHTML = `${this.min}:`;
-    if (this.sec < 10) {
-      document.querySelector('.sec').innerHTML = `0${this.sec}`;
-    } else {
-      document.querySelector('.sec').innerHTML = this.sec;
-    }
-
-    if (localStorage.getItem('isPause') === 'no') { // check is Pause button
-      if (this.sec === 59) {
-        this.sec = 0;
-        this.min += 1;
-      } else {
-        this.sec += 1;
-      }
-    }
-
-    setTimeout(this.showTimer, 1000);
+    pause.addEventListener('click', HandleEventPause);
   }
 }
