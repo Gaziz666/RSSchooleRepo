@@ -92,3 +92,15 @@ body {
 .description{
   margin-right: 4px;
 }
+
+.winner{
+  position: absolute;
+  background: rgba(15, 15, 15, 0.781);
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
+  z-index: 2;
+  font-size: 2rem;
+  width: 100%;
+}

@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
-import { get } from './storage.js';
+import create from './utils/create.js';
+import { get, set } from './storage.js';
 
 // eventlistner mousedown
 export default function preHandleEvent(e) {
@@ -9,6 +10,8 @@ export default function preHandleEvent(e) {
   const shiftY = e.clientY - chip.getBoundingClientRect().top;
   const emptyChip = document.querySelector('.empty');
   const audio = document.querySelector('.audio');
+  const chipAll = document.querySelectorAll('.chip');
+  const container = document.querySelector('.game-container');
   let elemEmpty = null;
   let dragElement = null;
   let isMouseMove = false;
@@ -67,8 +70,8 @@ export default function preHandleEvent(e) {
         const dragOrder = dragElement.style.order;
         const emptyOrder = elemEmpty.style.order;
         // count of movies
-        localStorage.setItem('countMovie', Number(localStorage.getItem('countMovie')) + 1);
-        document.querySelector('.counter').innerHTML = localStorage.getItem('countMovie');
+        set('countMovie', Number(get('countMovie')) + 1);
+        document.querySelector('.counter').innerHTML = get('countMovie');
 
         dragElement.style.order = emptyOrder;
         elemEmpty.style.order = dragOrder;
@@ -89,14 +92,28 @@ export default function preHandleEvent(e) {
       dragElement.style.order = emptyOrder;
       emptyChip.style.order = dragOrder;
       // count of movies
-      localStorage.setItem('countMovie', Number(localStorage.getItem('countMovie')) + 1);
-      document.querySelector('.counter').innerHTML = localStorage.getItem('countMovie');
+      set('countMovie', Number(get('countMovie')) + 1);
+      document.querySelector('.counter').innerHTML = get('countMovie');
 
       dragElement.classList.remove('empty');
       chipClone.remove();
     } else {
       dragElement.classList.remove('empty');
       chipClone.remove();
+    }
+
+    // check winner
+    let sumCorrectOrder = 0;
+    chipAll.forEach((chip) => {
+      if (Number(chip.dataset.key) === (Number(chip.style.order) + 1)) {
+        sumCorrectOrder += 1;
+      }
+    });
+    if (sumCorrectOrder === 15) {
+      const winnerAlert = create('div', 'winner', `«Ура! Вы решили головоломку за 
+      ${document.querySelector('.min').innerHTML}:${document.querySelector('.sec').innerHTML} и ${get('countMovie')} ходов»`);
+      container.append(winnerAlert);
+      
     }
   };
 }
