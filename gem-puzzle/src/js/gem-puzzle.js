@@ -18,7 +18,7 @@ const counter = create('div', 'counter-container',
   [create('span', 'description', 'Movies:'), create('span', 'counter', '0')]);
 const pause = create('button', 'pause', 'Pause Game');
 const resume = create('button', 'pause visible', 'Resume Game');
-create('audio', 'audio', null, document.body, ['src', './../assets/audio/audio.wav']);
+create('audio', 'audio', null, document.body, ['src', './assets/audio/audio.wav']);
 
 export default class GemPuzzle {
   constructor(gameType) {
@@ -58,7 +58,7 @@ export default class GemPuzzle {
       if (i === 0) {
         this.chipArr[i].chip.classList.add('empty');
       } else {
-        this.chipArr[i].chip.style.background = `url("./../assets/img/box/${imageNumber}.jpg`;
+        this.chipArr[i].chip.style.background = `url("./assets/img/box/${imageNumber}.jpg`;
         const left = (i - 1) % 4;
         const top = Math.trunc((i - 1) / 4);
         this.chipArr[i].chip.style.backgroundPosition = `left ${left * 33.33}% top ${top * 33.33}%`;
