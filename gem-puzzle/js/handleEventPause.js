@@ -4,6 +4,7 @@ import create from './utils/create.js';
 import GamePuzzle from './gem-puzzle.js';
 import gameType from './layouts/index.js';
 import { set, get } from './storage.js';
+import bestBoard from './bestBoard.js';
 
 export default function preHandleEvent() {
   if (get('isPause') === 'yes') return;
@@ -20,6 +21,9 @@ export default function preHandleEvent() {
   const popup = create('div', 'popup', [listMenu, icon]);
   document.querySelector('.game-container').append(popup);
   set('isPause', 'yes');
+  if (document.querySelector('.winner')) {
+    document.querySelector('.winner').remove();
+  }
 
   const gameMenuEvent = (e) => {
     const buttonType = e.target.closest('.list').dataset.game;
@@ -71,6 +75,8 @@ export default function preHandleEvent() {
       countMovie.innerHTML = get('countMovie');
       set('loadSaveGame', 'yes');
       popup.remove();
+    } else if (buttonType === 'score') {
+      bestBoard();
     }
   };
 

@@ -104,8 +104,8 @@ export default function preHandleEvent(e) {
 
     // check winner
     let sumCorrectOrder = 0;
-    chipAll.forEach((chip) => {
-      if (Number(chip.dataset.key) === (Number(chip.style.order) + 1)) {
+    chipAll.forEach((chipItem) => {
+      if (Number(chipItem.dataset.key) === (Number(chipItem.style.order) + 1)) {
         sumCorrectOrder += 1;
       }
     });
@@ -113,7 +113,23 @@ export default function preHandleEvent(e) {
       const winnerAlert = create('div', 'winner', `«Ура! Вы решили головоломку за 
       ${document.querySelector('.min').innerHTML}:${document.querySelector('.sec').innerHTML} и ${get('countMovie')} ходов»`);
       container.append(winnerAlert);
-      
+      const winner = {
+        min: document.querySelector('.min').innerHTML,
+        sec: document.querySelector('.sec').innerHTML,
+        count: get('countMovie'),
+      };
+      const winnerBoard = get('winner');
+      if (winnerBoard.length < 10) {
+        winnerBoard.push(winner);
+        set('winner', winnerBoard);
+      } else {
+        winnerBoard.sort((a, b) => a.count - b.count);
+        if (winnerBoard[winnerBoard.length - 1].count > winner.count) {
+          winnerBoard.pop();
+          winnerBoard.push(winner);
+          set('winner', winnerBoard);
+        }
+      }
     }
   };
 }

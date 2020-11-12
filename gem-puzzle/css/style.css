@@ -43,7 +43,7 @@ body {
   -webkit-transition: all .5s ease-in;
   position: relative;
   flex-wrap: wrap;
-  width: 100%;
+  width: auto;
   box-sizing: border-box;
 }
 
@@ -54,7 +54,6 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 2.5rem;
-  background: rgb(228, 228, 228);
   user-select: none;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -62,6 +61,7 @@ body {
   width: 120px;
   cursor: pointer;
   box-sizing: border-box;
+  background-size: 447px;
 }
 
 .empty{
@@ -86,7 +86,9 @@ body {
 .description, 
  .timer, 
  .counter, 
- .pause{
+ .pause,
+ .min,
+ .sec{
   font-size: 1.4rem;
 }
 .description{
@@ -103,4 +105,32 @@ body {
   z-index: 2;
   font-size: 2rem;
   width: 100%;
+}
+
+@media (max-width: 600px) {
+  *{
+    font-size: 12px;
+  }
+  .main {
+    max-width: 342px;
+  }
+
+  .chip{
+    height: 80px;
+    width: 80px;
+  }
+}
+
+@media (max-width: 342px) {
+  *{
+    font-size: 10px;
+  }
+  .main {
+    max-width: 300px;
+  }
+
+  .chip{
+    height: 70px;
+    width: 70px;
+  }
 }

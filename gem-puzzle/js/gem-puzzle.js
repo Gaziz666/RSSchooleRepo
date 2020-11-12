@@ -7,6 +7,7 @@ import PreHandleEvent from './preHandleEvent.js';
 import HandleEventPause from './handleEventPause.js';
 import { set, get } from './storage.js';
 import Timer from './timer.js';
+import swipePreHandleEvent from './swipePreHandleEvent.js';
 
 const timer = create('div', 'timer-container',
   [create('span', 'description', 'Time:'), create('div', 'timer',
@@ -30,7 +31,7 @@ export default class GemPuzzle {
     this.isPause = 'no';
   }
 
-  init(_rowCount) {
+  init() {
     this.header = create('header', 'game-header', [timer, counter, pause, resume]);
     this.main = create('main', 'main', [this.header]);
 
@@ -48,10 +49,27 @@ export default class GemPuzzle {
   }
 
   generateLayout(chipCount) {
+    const imageNumber = Math.floor((Math.random() * 150));
+
     for (let i = 0; i < chipCount; i += 1) {
       this.chipArr.push(new Chip(this.gameType.type[i]));
+
+      // add image on background
       if (i === 0) {
         this.chipArr[i].chip.classList.add('empty');
+      } else {
+        this.chipArr[i].chip.style.background = `url("./../assets/img/box/${imageNumber}.jpg`;
+        const left = (i - 1) % 4;
+        const top = Math.trunc((i - 1) / 4);
+        this.chipArr[i].chip.style.backgroundPosition = `left ${left * 33.33}% top ${top * 33.33}%`;
+        if (window.innerWidth > 600) {
+          this.chipArr[i].chip.style.backgroundSize = '472px';
+        } else if (window.innerWidth > 342) {
+          this.chipArr[i].chip.style.backgroundSize = '312px';
+        } else {
+          this.chipArr[i].chip.style.backgroundSize = '272px';
+        }
+        this.chipArr[i].chip.style.backgroundRepeat = 'no-repeat';
       }
     }
 
@@ -80,6 +98,7 @@ export default class GemPuzzle {
       this.chipOrder.push(item.chip.dataset.key);
       // eventListener mousedown on chip
       item.chip.onmousedown = PreHandleEvent;
+      item.chip.addEventListener('touchstart', swipePreHandleEvent);
     });
     // memories start position of chips
     set('chipOrder', this.chipOrder);
