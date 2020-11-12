@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.main {
+  max-width: 500px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.game-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.pause{
+  border: none;
+  background: none;
+}
+
+.pause:active{
+  border: none
+}
+
+.visible{
+  display: none;
+}
+
+.game-container{
+  display: flex;
+  margin: auto;
+  background: #af8421;
+  padding: 5px;
+  border: 1px solid #444;
+  transition: all .5s ease-in;
+  -webkit-transition: all .5s ease-in;
+  position: relative;
+  flex-wrap: wrap;
+  width: auto;
+  box-sizing: border-box;
+}
+
+.chip{
+  border: 1px solid #444;
+  margin: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  user-select: none;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  height: 120px;
+  width: 120px;
+  cursor: pointer;
+  box-sizing: border-box;
+  background-size: 447px;
+}
+
+.empty{
+  border: none;
+  background: none;
+  color: #af8421;
+}
+.nonvisible {
+  visibility: hidden;
+}
+
+.dragging {
+  position: absolute;
+  z-index: 100;
+}
+
+.timer-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.description, 
+ .timer, 
+ .counter, 
+ .pause,
+ .min,
+ .sec{
+  font-size: 1.4rem;
+}
+.description{
+  margin-right: 4px;
+}
+
+.winner{
+  position: absolute;
+  background: rgba(15, 15, 15, 0.781);
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
+  z-index: 2;
+  font-size: 2rem;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  *{
+    font-size: 12px;
+  }
+  .main {
+    max-width: 342px;
+  }
+
+  .chip{
+    height: 80px;
+    width: 80px;
+  }
+}
+
+@media (max-width: 342px) {
+  *{
+    font-size: 10px;
+  }
+  .main {
+    max-width: 300px;
+  }
+
+  .chip{
+    height: 70px;
+    width: 70px;
+  }
+}
