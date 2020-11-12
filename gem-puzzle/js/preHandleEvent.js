@@ -24,7 +24,7 @@ export default function preHandleEvent(e) {
 
   // draw clone  and take clone of chip
   document.body.append(chipClone);
-  chip.classList.add('empty');
+  chip.style.opacity = 0;
   dragElement = chip;
 
   chipClone.classList.add('dragging');
@@ -75,10 +75,10 @@ export default function preHandleEvent(e) {
 
         dragElement.style.order = emptyOrder;
         elemEmpty.style.order = dragOrder;
-        dragElement.classList.remove('empty');
+        dragElement.style.opacity = 1;
         chipClone.remove();
       } else {
-        dragElement.classList.remove('empty');
+        dragElement.style.opacity = 1;
         chipClone.remove();
       }
       chipClone.onmouseup = null;
@@ -95,10 +95,10 @@ export default function preHandleEvent(e) {
       set('countMovie', Number(get('countMovie')) + 1);
       document.querySelector('.counter').innerHTML = get('countMovie');
 
-      dragElement.classList.remove('empty');
+      dragElement.style.opacity = 1;
       chipClone.remove();
     } else {
-      dragElement.classList.remove('empty');
+      dragElement.style.opacity = 1;
       chipClone.remove();
     }
 
