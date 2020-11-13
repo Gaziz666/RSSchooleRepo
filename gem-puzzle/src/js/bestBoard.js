@@ -4,6 +4,11 @@ import { get } from './storage.js';
 
 export default function bestBoard() {
   const winnerBoard = get('winner');
+
+  if (!winnerBoard) {
+    alert('Top 10 winner Board list is empty!');
+    return;
+  }
   winnerBoard.sort((a, b) => a.count - b.count);
   const winList = winnerBoard.map((winner) => create('li', 'list',
     `Win for ${winner.count} movies and ${winner.min}:${winner.sec}`,

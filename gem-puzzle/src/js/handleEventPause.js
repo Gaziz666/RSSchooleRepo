@@ -1,3 +1,5 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import create from './utils/create.js';
@@ -59,16 +61,25 @@ export default function preHandleEvent() {
       new GamePuzzle(gameType).generateLayout(16);
     } else if (buttonType === 'save') { // click save
       gameChip.forEach((chip) => {
-        saveChip[chip.dataset.key] = chip.style.order;
+        saveChip[chip.dataset.key] = [chip.style.order,
+          chip.style.background,
+          chip.style.backgroundPosition,
+          chip.style.backgroundSize,
+          chip.style.backgroundRepeat];
       });
       saveOrder.push(saveChip);
       saveOrder.push(get('countMovie'));
       saveOrder.push(min.innerHTML, sec.innerHTML);
       set('save', saveOrder);
     } else if (buttonType === 'saved') {
+      if(!get('save')) {
+        alert('no save game')
+        return;
+      }
       gameChip.forEach((chip) => {
         // eslint-disable-next-line no-param-reassign
-        chip.style.order = get('save')[0][chip.dataset.key];
+        chip.style.order = get('save')[0][chip.dataset.key][0];
+        chip.style.background = get('save')[0][chip.dataset.key][1];
       });
       set('countMovie', get('save')[1]);
       set('isPause', 'no');

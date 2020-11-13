@@ -118,8 +118,8 @@ export default function preHandleEvent(e) {
         sec: document.querySelector('.sec').innerHTML,
         count: get('countMovie'),
       };
-      const winnerBoard = get('winner');
-      if (winnerBoard.length < 10) {
+      const winnerBoard = get('winner') || [];
+      if (!winnerBoard || winnerBoard.length < 10) {
         winnerBoard.push(winner);
         set('winner', winnerBoard);
       } else {
