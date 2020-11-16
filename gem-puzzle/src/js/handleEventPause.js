@@ -27,7 +27,7 @@ export default function preHandleEvent() {
         gameTypeSelect,
       ], null, ['game', 'new']),
       create('li', 'list', '<span class="pause-buttons">Save game</span>', null, ['game', 'save']),
-      create('li', 'list', '<span class="pause-buttons">Load game</span>', null, ['game', 'saved']),
+      create('li', 'list', '<span class="pause-buttons">Load game</span>', null, ['game', 'load']),
       create('li', 'list', '<span class="pause-buttons">Best score</span>', null, ['game', 'score'])]);
   const icon = get('mute') === 'no'
     ? create('i', 'material-icons', 'volume_up')
@@ -64,33 +64,41 @@ export default function preHandleEvent() {
       countMovie.innerHTML = 0;
       popup.remove();
     } else if (buttonType === 'new') { // click new game
-      const gameType = gameTypeSelect.value;
+      const newGameType = gameTypeSelect.value;
       popup.remove();
       set('isPause', 'no');
       set('isRestart', 'yes');
       set('countMovie', 0);
       countMovie.innerHTML = 0;
       gameChip.forEach((chip) => chip.remove());
-      new GamePuzzle(gameType).generateLayout(gameType * gameType);
+      new GamePuzzle(newGameType).generateLayout(newGameType * newGameType);
     } else if (buttonType === 'save') { // click save
+      let chipCount = 0;
       gameChip.forEach((chip) => {
         saveChip[chip.dataset.key] = [chip.style.order,
           chip.style.background,
           chip.style.backgroundPosition,
           chip.style.backgroundSize,
           chip.style.backgroundRepeat];
+        chipCount += 1;
       });
       saveOrder.push(saveChip);
       saveOrder.push(get('countMovie'));
       saveOrder.push(min.innerHTML, sec.innerHTML);
+      saveOrder.push(Math.sqrt(chipCount));
       set('save', saveOrder);
       alert('game saved');
-    } else if (buttonType === 'saved') {
+    } else if (buttonType === 'load') {
       if (!get('save')) {
         alert('no save game');
         return;
       }
-      gameChip.forEach((chip) => {
+      gameChip.forEach((chip) => chip.remove());
+      const loadGameType = Number(get('save')[4]);
+      new GamePuzzle(loadGameType).generateLayout(loadGameType * loadGameType);
+      const newGameChip = document.querySelectorAll('.chip');
+      console.log(loadGameType);
+      newGameChip.forEach((chip) => {
         // eslint-disable-next-line no-param-reassign
         chip.style.order = get('save')[0][chip.dataset.key][0];
         chip.style.background = get('save')[0][chip.dataset.key][1];
