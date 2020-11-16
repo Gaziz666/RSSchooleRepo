@@ -97,7 +97,6 @@ export default function preHandleEvent() {
       const loadGameType = Number(get('save')[4]);
       new GamePuzzle(loadGameType).generateLayout(loadGameType * loadGameType);
       const newGameChip = document.querySelectorAll('.chip');
-      console.log(loadGameType);
       newGameChip.forEach((chip) => {
         // eslint-disable-next-line no-param-reassign
         chip.style.order = get('save')[0][chip.dataset.key][0];
