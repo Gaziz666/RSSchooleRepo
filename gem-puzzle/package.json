@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
-    "dev": "webpack --mode development"
+    "dev": "webpack --mode development",
+    "watch": "webpack --mode development --watch"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,7 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "lodash": "^4.17.20"
+    "lodash": "^4.17.20",
+    "normalize.css": "^8.0.1"
   }
 }

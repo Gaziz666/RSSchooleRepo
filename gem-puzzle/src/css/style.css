@@ -1,3 +1,4 @@
+@import "~normalize.css";
 body {
   margin: 0;
   padding: 0;
@@ -44,24 +45,53 @@ body {
   position: relative;
   flex-wrap: wrap;
   width: auto;
+  width: 500px;
+  height: 500px;
   box-sizing: border-box;
 }
 
 .chip{
   border: 1px solid #444;
-  margin: 1px;
+  margin: 0.2%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
   user-select: none;
   border-radius: 5px;
   -webkit-border-radius: 5px;
-  height: 120px;
-  width: 120px;
   cursor: pointer;
   box-sizing: border-box;
   background-size: 447px;
+}
+.chip4{
+  height: 24.6%;
+  width: 24.6%;
+  font-size: 2.5rem;
+}
+.chip3{
+  height: 32.9%;
+  width: 32.9%;
+  font-size: 2.5rem;
+}
+.chip5{
+  height: 19.6%;
+  width: 19.6%;
+  font-size: 2.5rem;
+}
+.chip6{
+  height: 16.2%;
+  width: 16.2%;
+  font-size: 2rem;
+}
+.chip7{
+  height: 13.8%;
+  width: 13.8%;
+  font-size: 1.9rem;
+}
+.chip8{
+  height: 12.1%;
+  width: 12.1%;
+  font-size: 1.8rem;
 }
 
 .empty{
@@ -114,11 +144,12 @@ body {
   .main {
     max-width: 342px;
   }
-
-  .chip{
-    height: 80px;
-    width: 80px;
+  .game-container{
+    width: 342px;
+    height: 342px;
   }
+
+  
 }
 
 @media (max-width: 342px) {
@@ -128,9 +159,9 @@ body {
   .main {
     max-width: 300px;
   }
-
-  .chip{
-    height: 70px;
-    width: 70px;
+  .game-container{
+    width: 300px;
+    height: 300px;
   }
+
 }

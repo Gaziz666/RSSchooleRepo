@@ -1,19 +1,31 @@
+/* eslint-disable no-alert */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import create from './utils/create.js';
 import GamePuzzle from './gem-puzzle.js';
-import gameType from './layouts/index.js';
+// import gameType from './layouts/index.js';
 import { set, get } from './storage.js';
 import bestBoard from './bestBoard.js';
 
 export default function preHandleEvent() {
   if (get('isPause') === 'yes') return;
+  const gameTypeSelect = create('select', 'select', [
+    create('option', 'option', '3 * 3', null, ['value', '3']),
+    create('option', 'option', '4 * 4', null, ['value', '4'], ['selected', '']),
+    create('option', 'option', '5 * 5', null, ['value', '5']),
+    create('option', 'option', '6 * 6', null, ['value', '6']),
+    create('option', 'option', '7 * 7', null, ['value', '7']),
+    create('option', 'option', '8 * 8', null, ['value', '8']),
+  ], null, ['name', 'gameType']);
   const listMenu = create('ul', 'menu',
     [create('li', 'list', '<span class="pause-buttons">Resume game</span>', null, ['game', 'resume']),
       create('li', 'list', '<span class="pause-buttons">Restart game</span>', null, ['game', 'restart']),
-      create('li', 'list', '<span class="pause-buttons">New game</span>', null, ['game', 'new']),
+      create('li', 'list', [
+        create('span', 'pause-buttons', 'New game'),
+        gameTypeSelect,
+      ], null, ['game', 'new']),
       create('li', 'list', '<span class="pause-buttons">Save game</span>', null, ['game', 'save']),
       create('li', 'list', '<span class="pause-buttons">Load game</span>', null, ['game', 'saved']),
       create('li', 'list', '<span class="pause-buttons">Best score</span>', null, ['game', 'score'])]);
@@ -52,13 +64,14 @@ export default function preHandleEvent() {
       countMovie.innerHTML = 0;
       popup.remove();
     } else if (buttonType === 'new') { // click new game
+      const gameType = gameTypeSelect.value;
       popup.remove();
       set('isPause', 'no');
       set('isRestart', 'yes');
       set('countMovie', 0);
       countMovie.innerHTML = 0;
       gameChip.forEach((chip) => chip.remove());
-      new GamePuzzle(gameType).generateLayout(16);
+      new GamePuzzle(gameType).generateLayout(gameType * gameType);
     } else if (buttonType === 'save') { // click save
       gameChip.forEach((chip) => {
         saveChip[chip.dataset.key] = [chip.style.order,
@@ -71,9 +84,10 @@ export default function preHandleEvent() {
       saveOrder.push(get('countMovie'));
       saveOrder.push(min.innerHTML, sec.innerHTML);
       set('save', saveOrder);
+      alert('game saved');
     } else if (buttonType === 'saved') {
-      if(!get('save')) {
-        alert('no save game')
+      if (!get('save')) {
+        alert('no save game');
         return;
       }
       gameChip.forEach((chip) => {
