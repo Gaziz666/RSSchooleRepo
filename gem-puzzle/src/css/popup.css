@@ -1,3 +1,5 @@
+@import "~normalize.css";
+
 .popup{
   position: absolute;
   top: 0;
@@ -63,5 +65,11 @@
   margin: 10px 0 0 45%;
   border: none;
   outline: none;
-  
+}
+
+.select{
+  margin-left: 5px;
+  font-size: 1.3rem;
+  background: rgba(0, 0, 0, 0.9);
+  color: #e7d809;
 }

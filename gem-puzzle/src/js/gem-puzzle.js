@@ -22,7 +22,7 @@ create('audio', 'audio', null, document.body, ['src', './assets/audio/audio.wav'
 
 export default class GemPuzzle {
   constructor(gameType) {
-    this.gameType = gameType;
+    this.chipType = gameType;
     this.chipArr = [];
     this.chipOrder = [];
     this.min = 0;
@@ -49,19 +49,19 @@ export default class GemPuzzle {
   }
 
   generateLayout(chipCount) {
-    const imageNumber = Math.floor((Math.random() * 150));
+    const imageNumber = Math.floor((Math.random() * 150)) + 1;
 
     for (let i = 0; i < chipCount; i += 1) {
-      this.chipArr.push(new Chip(this.gameType.type[i]));
+      this.chipArr.push(new Chip(i, this.chipType));
 
       // add image on background
       if (i === 0) {
         this.chipArr[i].chip.classList.add('empty');
       } else {
         this.chipArr[i].chip.style.background = `url("./assets/img/box/${imageNumber}.jpg`;
-        const left = (i - 1) % 4;
-        const top = Math.trunc((i - 1) / 4);
-        this.chipArr[i].chip.style.backgroundPosition = `left ${left * 33.33}% top ${top * 33.33}%`;
+        const left = (i - 1) % this.chipType;
+        const top = Math.trunc((i - 1) / this.chipType);
+        this.chipArr[i].chip.style.backgroundPosition = `left ${left * (100 / (Number(this.chipType) - 1))}% top ${top * (100 / (Number(this.chipType) - 1))}%`;
         if (window.innerWidth > 600) {
           this.chipArr[i].chip.style.backgroundSize = '472px';
         } else if (window.innerWidth > 342) {
@@ -86,8 +86,8 @@ export default class GemPuzzle {
           }
         }
 
-        if (this.chipArr[i].number === 0) {
-          sum += Math.trunc((i) / 4) + 1;
+        if (this.chipArr[i].number === 0 && Number(this.chipType) % 2 === 0) {
+          sum += Math.trunc((i) / Number(this.chipType)) + 1;
         }
       }
     }
@@ -97,8 +97,8 @@ export default class GemPuzzle {
       item.chip.style.order = i;
       this.chipOrder.push(item.chip.dataset.key);
       // eventListener mousedown on chip
-      item.chip.onmousedown = PreHandleEvent;
-      item.chip.addEventListener('touchstart', swipePreHandleEvent);
+      item.chip.addEventListener('mousedown', (e) => (PreHandleEvent(e, Number(this.chipType))));
+      item.chip.addEventListener('touchstart', (e) => (swipePreHandleEvent(e, Number(this.chipType))));
     });
     // memories start position of chips
     set('chipOrder', this.chipOrder);

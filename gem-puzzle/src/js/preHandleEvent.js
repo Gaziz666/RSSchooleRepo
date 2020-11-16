@@ -3,7 +3,7 @@ import create from './utils/create.js';
 import { get, set } from './storage.js';
 
 // eventlistner mousedown
-export default function preHandleEvent(e) {
+export default function preHandleEvent(e, chipType) {
   const chip = e.target.closest('.chip');
   const chipClone = chip.cloneNode(true);
   const shiftX = e.clientX - chip.getBoundingClientRect().left;
@@ -26,6 +26,9 @@ export default function preHandleEvent(e) {
   document.body.append(chipClone);
   chip.style.opacity = 0;
   dragElement = chip;
+
+  chipClone.style.width = `${chip.offsetWidth}px`;
+  chipClone.style.height = `${chip.offsetHeight}px`;
 
   chipClone.classList.add('dragging');
   // remove standard move from browser
@@ -65,7 +68,7 @@ export default function preHandleEvent(e) {
       if (
         elemEmpty
         && ((Math.abs(dragElement.style.order - elemEmpty.style.order) === 1)
-        || (Math.abs(dragElement.style.order - elemEmpty.style.order) === 4))
+        || (Math.abs(dragElement.style.order - elemEmpty.style.order) === Number(chipType)))
       ) {
         const dragOrder = dragElement.style.order;
         const emptyOrder = elemEmpty.style.order;
@@ -86,7 +89,7 @@ export default function preHandleEvent(e) {
 
     // work is just click
     } else if ((Math.abs(dragElement.style.order - emptyChip.style.order) === 1)
-             || (Math.abs(dragElement.style.order - emptyChip.style.order) === 4)) {
+             || (Math.abs(dragElement.style.order - emptyChip.style.order) === Number(chipType))) {
       const dragOrder = dragElement.style.order;
       const emptyOrder = emptyChip.style.order;
       dragElement.style.order = emptyOrder;
@@ -109,7 +112,7 @@ export default function preHandleEvent(e) {
         sumCorrectOrder += 1;
       }
     });
-    if (sumCorrectOrder === 15) {
+    if (sumCorrectOrder === (chipType * chipType)- 1) {
       const winnerAlert = create('div', 'winner', `«Ура! Вы решили головоломку за 
       ${document.querySelector('.min').innerHTML}:${document.querySelector('.sec').innerHTML} и ${get('countMovie')} ходов»`);
       container.append(winnerAlert);
@@ -117,6 +120,7 @@ export default function preHandleEvent(e) {
         min: document.querySelector('.min').innerHTML,
         sec: document.querySelector('.sec').innerHTML,
         count: get('countMovie'),
+        board: `${chipType} * ${chipType}`,
       };
       const winnerBoard = get('winner') || [];
       if (!winnerBoard || winnerBoard.length < 10) {

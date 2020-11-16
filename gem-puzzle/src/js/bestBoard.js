@@ -11,7 +11,7 @@ export default function bestBoard() {
   }
   winnerBoard.sort((a, b) => a.count - b.count);
   const winList = winnerBoard.map((winner) => create('li', 'list',
-    `Win for ${winner.count} movies and ${winner.min}:${winner.sec}`,
+    `Win for ${winner.count} movies and ${winner.min}:${winner.sec} on board: ${winner.board}`,
     null));
   const ol = create('ol', 'winList', winList);
   const div = create('div', 'winBoard', [create('h4', 'board-header', 'Best 10 winners'), ol,
