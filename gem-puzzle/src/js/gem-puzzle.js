@@ -18,7 +18,7 @@ const counter = create('div', 'counter-container',
   [create('span', 'description', 'Movies:'), create('span', 'counter', '0')]);
 const pause = create('button', 'pause', 'Pause Game');
 const resume = create('button', 'pause visible', 'Resume Game');
-create('audio', 'audio', null, document.body, ['src', './assets/audio/audio.wav']);
+create('audio', 'audio', null, document.body, ['src', './assets/audio/audio.wav'], ['allow', 'autoplay']);
 
 export default class GemPuzzle {
   constructor(gameType) {

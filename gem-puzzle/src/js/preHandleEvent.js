@@ -112,7 +112,7 @@ export default function preHandleEvent(e, chipType) {
         sumCorrectOrder += 1;
       }
     });
-    if (sumCorrectOrder === (chipType * chipType)- 1) {
+    if (sumCorrectOrder === (chipType * chipType) - 1) {
       const winnerAlert = create('div', 'winner', `«Ура! Вы решили головоломку за 
       ${document.querySelector('.min').innerHTML}:${document.querySelector('.sec').innerHTML} и ${get('countMovie')} ходов»`);
       container.append(winnerAlert);

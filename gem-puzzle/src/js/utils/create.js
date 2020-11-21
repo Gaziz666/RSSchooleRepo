@@ -32,7 +32,7 @@ export default function create(el, classNames, child, parent, ...dataAttr) {
     dataAttr.forEach(([attrName, attrValue]) => {
       if (attrValue === '') {
         element.setAttribute(attrName, '');
-      } else if (attrName.match(/value|id|placeholder|cols|rows|autocorrect|spellcheck|src|name/)) {
+      } else if (attrName.match(/value|id|placeholder|cols|rows|autocorrect|spellcheck|src|name|allow/)) {
         element.setAttribute(attrName, attrValue);
       } else {
         element.dataset[attrName] = attrValue;
