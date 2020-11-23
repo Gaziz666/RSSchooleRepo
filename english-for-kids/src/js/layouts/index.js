@@ -5,7 +5,8 @@ import animalA from './animalA.js';
 import animalB from './animalB.js';
 import clothes from './clothes.js';
 import emotions from './emotions.js';
+import cardType from './cardType.js';
 
 export default {
-  actionA, actionB, animalA, animalB, clothes, emotions,
+  actionA, actionB, animalA, animalB, clothes, emotions, cardType,
 };
