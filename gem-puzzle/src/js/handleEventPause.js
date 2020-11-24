@@ -1,13 +1,7 @@
-/* eslint-disable no-alert */
-/* eslint-disable prefer-destructuring */
-/* eslint-disable no-param-reassign */
-/* eslint-disable import/no-cycle */
-/* eslint-disable import/extensions */
-import create from './utils/create.js';
-import GamePuzzle from './gem-puzzle.js';
-// import gameType from './layouts/index.js';
-import { set, get } from './storage.js';
-import bestBoard from './bestBoard.js';
+import create from './utils/create';
+import { set, get } from './storage';
+import bestBoard from './bestBoard';
+import generateLayout from './generateLayout';
 
 export default function preHandleEvent() {
   if (get('isPause') === 'yes') return;
@@ -71,7 +65,7 @@ export default function preHandleEvent() {
       set('countMovie', 0);
       countMovie.innerHTML = 0;
       gameChip.forEach((chip) => chip.remove());
-      new GamePuzzle(newGameType).generateLayout(newGameType * newGameType);
+      generateLayout(newGameType);
     } else if (buttonType === 'save') { // click save
       let chipCount = 0;
       gameChip.forEach((chip) => {
@@ -95,7 +89,7 @@ export default function preHandleEvent() {
       }
       gameChip.forEach((chip) => chip.remove());
       const loadGameType = Number(get('save')[4]);
-      new GamePuzzle(loadGameType).generateLayout(loadGameType * loadGameType);
+      generateLayout(loadGameType)
       const newGameChip = document.querySelectorAll('.chip');
       newGameChip.forEach((chip) => {
         // eslint-disable-next-line no-param-reassign

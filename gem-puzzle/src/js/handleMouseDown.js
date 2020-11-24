@@ -2,12 +2,12 @@
 import create from './utils/create.js';
 import { get, set } from './storage.js';
 
-// eventlistner mousedown
-export default function preHandleEvent(e, chipType) {
+export default function handleMouseDown(e, chipType) {
   const chip = e.target.closest('.chip');
   const chipClone = chip.cloneNode(true);
-  const shiftX = e.clientX - chip.getBoundingClientRect().left;
-  const shiftY = e.clientY - chip.getBoundingClientRect().top;
+  const chipBoundingClientRect = chip.getBoundingClientRect();
+  const shiftX = e.clientX - chipBoundingClientRect.left;
+  const shiftY = e.clientY - chipBoundingClientRect.top;
   const emptyChip = document.querySelector('.empty');
   const audio = document.querySelector('.audio');
   const chipAll = document.querySelectorAll('.chip');
@@ -35,19 +35,19 @@ export default function preHandleEvent(e, chipType) {
   chipClone.ondragstart = () => false;
 
   // mouse cursor centered on chip center
-  function moveAt(pageX, pageY) {
+  function moveToCenter(pageX, pageY) {
     chipClone.style.left = `${pageX - chipClone.offsetWidth / 2}px`;
     chipClone.style.top = `${pageY - chipClone.offsetHeight / 2}px`;
   }
-  function notMoveAt(pageX, pageY) {
+  function moveCurrentPosition(pageX, pageY) {
     chipClone.style.left = `${pageX - shiftX}px`;
     chipClone.style.top = `${pageY - shiftY}px`;
   }
 
-  notMoveAt(e.pageX, e.pageY);
+  moveCurrentPosition(e.pageX, e.pageY);
   // mouse moving
   function onMouseMove(event) {
-    moveAt(event.pageX, event.pageY);
+    moveToCenter(event.pageX, event.pageY);
     isMouseMove = true;
 
     chipClone.classList.add('nonvisible');

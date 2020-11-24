@@ -1,11 +1,11 @@
-/* eslint-disable import/extensions */
-import create from './utils/create.js';
-import { get } from './storage.js';
+import create from './utils/create';
+import { get } from './storage';
 
 export default function bestBoard() {
   const winnerBoard = get('winner');
 
   if (!winnerBoard) {
+    // eslint-disable-next-line no-alert
     alert('Top 10 winner Board list is empty!');
     return;
   }
