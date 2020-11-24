@@ -57,7 +57,8 @@ body {
   user-select: none;
   border-radius: 5px;
   cursor: pointer;
-  background-size: 447px;
+  background-size: 650px;
+  background-repeat: no-repeat;
 }
 .chip4{
   height: 25%;
@@ -96,7 +97,7 @@ body {
   color: #af8421;
 }
 .nonvisible {
-  visibility: hidden;
+  display: none;
 }
 
 .dragging {
@@ -140,6 +141,9 @@ body {
   .main {
     max-width: 342px;
   }
+  .chip{
+    background-size: 312px;
+  }
   .game-container{
     height: 342px;
   }
@@ -153,6 +157,9 @@ body {
   }
   .main {
     max-width: 300px;
+  }
+  .chip{
+    background-size: 272px;
   }
   .game-container{
     height: 300px;

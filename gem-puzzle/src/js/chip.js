@@ -1,5 +1,4 @@
-/* eslint-disable import/extensions */
-import create from './utils/create.js';
+import create from './utils/create';
 
 export default class Chip {
   constructor(number, chipType) {
