@@ -41,13 +41,15 @@ function makeRandomAndCheckWin(arr, type) {
   }
 }
 
-export default function generateLayout(chipType) {
+export default function generateLayout(chipType, count) {
   const chipArr = [];
   const chipOrder = [];
   const container = document.querySelector('.game-container');
+  const counterMovie = document.querySelector('.counter');
 
   createChipWithBcg(chipArr, chipType);
   makeRandomAndCheckWin(chipArr, chipType);
+  counterMovie.innerHTML = count;
 
   chipArr.forEach((item, i) => {
     container.append(item.chip);

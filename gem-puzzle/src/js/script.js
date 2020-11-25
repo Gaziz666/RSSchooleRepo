@@ -7,4 +7,4 @@ require.context('./../assets/img/box', true, /\.(png|svg|jpg|gif)$/);
 require.context('./../assets/audio', true, /\.wav$/);
 
 new GamePuzzle(4).init();
-generateLayout(4);
+generateLayout(4, 0);
