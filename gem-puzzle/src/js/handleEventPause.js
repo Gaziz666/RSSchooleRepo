@@ -81,36 +81,27 @@ const gameMenuEvent = (e, enablePauseBtn, timer) => {
   }
 };
 
-const audioEvent = () => {
-  if (get('mute') === 'no') {
-    icon.innerHTML = 'volume_off';
-    set('mute', 'yes');
-  } else {
-    icon.innerHTML = 'volume_up';
-    set('mute', 'no');
-  }
-};
-
 export default function handleEventPause(pause, paused, timer) {
   const popup = document.querySelector('.popup');
-  popup.classList.remove('nonvisible');
+  const winnerWrapper = document.querySelector('.winner-wrapper');
+  const icon = document.querySelector('.material-icons');
   const buttons = document.querySelectorAll('.pause-buttons');
-  timer.stop();
+  if (winnerWrapper) winnerWrapper.remove();
   // eslint-disable-next-line no-use-before-define
   const onclick = (e) => gameMenuEvent(e, enablePauseBtn, timer);
-
   const enablePauseBtn = () => {
     paused.classList.add('nonvisible');
     pause.classList.remove('nonvisible');
     popup.classList.add('nonvisible');
     buttons.forEach((button) => button.removeEventListener('click', onclick));
   };
-
   const disablePauseBtn = () => {
     pause.classList.add('nonvisible');
     paused.classList.remove('nonvisible');
     timer.stop();
   };
+
+  popup.classList.remove('nonvisible');
   disablePauseBtn();
 
   if (document.querySelector('.winner')) {
@@ -118,5 +109,15 @@ export default function handleEventPause(pause, paused, timer) {
   }
 
   buttons.forEach((button) => button.addEventListener('click', onclick));
-  // icon.addEventListener('click', audioEvent);
+
+  const audioEvent = () => {
+    if (get('mute') === 'no') {
+      icon.innerHTML = 'volume_off';
+      set('mute', 'yes');
+    } else {
+      icon.innerHTML = 'volume_up';
+      set('mute', 'no');
+    }
+  };
+  icon.addEventListener('click', audioEvent);
 }

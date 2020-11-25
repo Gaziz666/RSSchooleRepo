@@ -1,6 +1,77 @@
-/* eslint-disable import/extensions */
-import create from './utils/create.js';
-import { get, set } from './storage.js';
+import create from './utils/create';
+import { get, set } from './storage';
+
+let emptyElemBelow = null;
+let dragElement = null;
+let isMouseDrag = false;
+
+function afterMouseUp(chipType, chipClone) {
+  const emptyChip = document.querySelector('.empty');
+  let isSideNeighbor = false;
+  let isUpTopNeighbor = false;
+  if (emptyElemBelow) {
+    isSideNeighbor = Math.abs(dragElement.style.order - emptyElemBelow.style.order) === 1;
+    isUpTopNeighbor = Math.abs(dragElement.style.order - emptyElemBelow.style.order) === +chipType;
+  } else {
+    isSideNeighbor = Math.abs(dragElement.style.order - emptyChip.style.order) === 1;
+    isUpTopNeighbor = Math.abs(dragElement.style.order - emptyChip.style.order) === +chipType;
+  }
+  if (isMouseDrag) {
+    if (emptyElemBelow && (isSideNeighbor || isUpTopNeighbor)) {
+      const dragOrder = dragElement.style.order;
+      const emptyOrder = emptyElemBelow.style.order;
+      document.querySelector('.counter').innerHTML = +(document.querySelector('.counter').innerHTML) + 1;
+      dragElement.style.order = emptyOrder;
+      emptyElemBelow.style.order = dragOrder;
+    }
+    isMouseDrag = false;
+  } else if (isSideNeighbor || isUpTopNeighbor) {
+    const dragOrder = dragElement.style.order;
+    const emptyOrder = emptyChip.style.order;
+    dragElement.style.order = emptyOrder;
+    emptyChip.style.order = dragOrder;
+    document.querySelector('.counter').innerHTML = +(document.querySelector('.counter').innerHTML) + 1;
+  }
+  dragElement.style.opacity = 1;
+  chipClone.remove();
+}
+
+function checkWinner(chipType) {
+  const chipAll = document.querySelectorAll('.chip');
+  const container = document.querySelector('.game-container');
+  let sumCorrectOrder = 0;
+  chipAll.forEach((chipItem) => {
+    if (+(chipItem.dataset.key) === (+(chipItem.style.order) + 1)) {
+      sumCorrectOrder += 1;
+    }
+  });
+  const chipCount = (chipType * chipType) - 1;
+  if (sumCorrectOrder === chipCount) {
+    const winner = {
+      min: document.querySelector('.min').innerHTML,
+      sec: document.querySelector('.sec').innerHTML,
+      count: document.querySelector('.counter').innerHTML,
+      board: `${chipType} * ${chipType}`,
+    };
+    const winnerAlert = create('div', 'winner', `«Ура! Вы решили головоломку за 
+    ${winner.min}:${winner.sec} и ${winner.count} ходов»`);
+    const winnerWrapper = create('div', 'winner-wrapper popup', winnerAlert);
+    container.append(winnerWrapper);
+
+    const winnerBoard = get('winner') || [];
+    if (!winnerBoard || winnerBoard.length < 10) {
+      winnerBoard.push(winner);
+      set('winner', winnerBoard);
+    } else {
+      winnerBoard.sort((a, b) => a.count - b.count);
+      if (winnerBoard[winnerBoard.length - 1].count > winner.count) {
+        winnerBoard.pop();
+        winnerBoard.push(winner);
+        set('winner', winnerBoard);
+      }
+    }
+  }
+}
 
 export default function handleMouseDown(e, chipType) {
   const chip = e.target.closest('.chip');
@@ -8,18 +79,12 @@ export default function handleMouseDown(e, chipType) {
   const chipBoundingClientRect = chip.getBoundingClientRect();
   const shiftX = e.clientX - chipBoundingClientRect.left;
   const shiftY = e.clientY - chipBoundingClientRect.top;
-  const emptyChip = document.querySelector('.empty');
   const audio = document.querySelector('.audio');
-  const chipAll = document.querySelectorAll('.chip');
-  const container = document.querySelector('.game-container');
-  let elemEmpty = null;
-  let dragElement = null;
-  let isMouseMove = false;
 
   if (get('mute') === 'no') {
     audio.play();
   }
-  // check if chip is empty (0)
+
   if (e.target.closest('.empty')) return;
 
   // draw clone  and take clone of chip
@@ -35,105 +100,34 @@ export default function handleMouseDown(e, chipType) {
   chipClone.ondragstart = () => false;
 
   // mouse cursor centered on chip center
-  function moveToCenter(pageX, pageY) {
+  function moveMouseToCenter(pageX, pageY) {
     chipClone.style.left = `${pageX - chipClone.offsetWidth / 2}px`;
     chipClone.style.top = `${pageY - chipClone.offsetHeight / 2}px`;
   }
-  function moveCurrentPosition(pageX, pageY) {
+  function moveMouseToCurrentPosition(pageX, pageY) {
     chipClone.style.left = `${pageX - shiftX}px`;
     chipClone.style.top = `${pageY - shiftY}px`;
   }
 
-  moveCurrentPosition(e.pageX, e.pageY);
+  moveMouseToCurrentPosition(e.pageX, e.pageY);
   // mouse moving
   function onMouseMove(event) {
-    moveToCenter(event.pageX, event.pageY);
-    isMouseMove = true;
+    moveMouseToCenter(event.pageX, event.pageY);
+    isMouseDrag = true;
 
     chipClone.classList.add('nonvisible');
     const elemBelow = document.elementFromPoint(event.clientX, event.clientY);
     chipClone.classList.remove('nonvisible');
 
     if (!elemBelow) return;
-    elemEmpty = elemBelow.closest('.empty');
+    emptyElemBelow = elemBelow.closest('.empty');
   }
 
   document.addEventListener('mousemove', onMouseMove);
 
-  // eventListner on mouse up
   chipClone.onmouseup = () => {
     document.removeEventListener('mousemove', onMouseMove);
-    // work is drag and draw
-    if (isMouseMove) {
-      if (
-        elemEmpty
-        && ((Math.abs(dragElement.style.order - elemEmpty.style.order) === 1)
-        || (Math.abs(dragElement.style.order - elemEmpty.style.order) === Number(chipType)))
-      ) {
-        const dragOrder = dragElement.style.order;
-        const emptyOrder = elemEmpty.style.order;
-        // count of movies
-        set('countMovie', Number(get('countMovie')) + 1);
-        document.querySelector('.counter').innerHTML = get('countMovie');
-
-        dragElement.style.order = emptyOrder;
-        elemEmpty.style.order = dragOrder;
-        dragElement.style.opacity = 1;
-        chipClone.remove();
-      } else {
-        dragElement.style.opacity = 1;
-        chipClone.remove();
-      }
-      chipClone.onmouseup = null;
-      isMouseMove = false;
-
-    // work is just click
-    } else if ((Math.abs(dragElement.style.order - emptyChip.style.order) === 1)
-             || (Math.abs(dragElement.style.order - emptyChip.style.order) === Number(chipType))) {
-      const dragOrder = dragElement.style.order;
-      const emptyOrder = emptyChip.style.order;
-      dragElement.style.order = emptyOrder;
-      emptyChip.style.order = dragOrder;
-      // count of movies
-      set('countMovie', Number(get('countMovie')) + 1);
-      document.querySelector('.counter').innerHTML = get('countMovie');
-
-      dragElement.style.opacity = 1;
-      chipClone.remove();
-    } else {
-      dragElement.style.opacity = 1;
-      chipClone.remove();
-    }
-
-    // check winner
-    let sumCorrectOrder = 0;
-    chipAll.forEach((chipItem) => {
-      if (Number(chipItem.dataset.key) === (Number(chipItem.style.order) + 1)) {
-        sumCorrectOrder += 1;
-      }
-    });
-    if (sumCorrectOrder === (chipType * chipType) - 1) {
-      const winnerAlert = create('div', 'winner', `«Ура! Вы решили головоломку за 
-      ${document.querySelector('.min').innerHTML}:${document.querySelector('.sec').innerHTML} и ${get('countMovie')} ходов»`);
-      container.append(winnerAlert);
-      const winner = {
-        min: document.querySelector('.min').innerHTML,
-        sec: document.querySelector('.sec').innerHTML,
-        count: get('countMovie'),
-        board: `${chipType} * ${chipType}`,
-      };
-      const winnerBoard = get('winner') || [];
-      if (!winnerBoard || winnerBoard.length < 10) {
-        winnerBoard.push(winner);
-        set('winner', winnerBoard);
-      } else {
-        winnerBoard.sort((a, b) => a.count - b.count);
-        if (winnerBoard[winnerBoard.length - 1].count > winner.count) {
-          winnerBoard.pop();
-          winnerBoard.push(winner);
-          set('winner', winnerBoard);
-        }
-      }
-    }
+    afterMouseUp(chipType, chipClone);
+    checkWinner(chipType);
   };
 }

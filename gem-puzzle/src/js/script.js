@@ -1,4 +1,4 @@
-import GamePuzzle from './gem-puzzle';
+import GamePuzzle from './Gem-puzzle';
 import '../css/style.css';
 import '../css/popup.css';
 import generateLayout from './generateLayout';

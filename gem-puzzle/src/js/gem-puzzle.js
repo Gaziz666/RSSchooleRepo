@@ -50,19 +50,15 @@ export default class GemPuzzle {
     this.container = create('div', 'game-container', popup, this.main);
     document.body.prepend(this.main);
 
-    set('countMovie', 0);
-    set('isPause', 'no');
-    set('isRestart', 'no');
     set('mute', 'no');
     const gameTimer = new Timer();
     gameTimer.get(0, 0);
     gameTimer.startTimer();
 
     document.querySelector('.counter').innerHTML = get('countMovie');
-    
+
     pause.addEventListener('click', () => {
       handleEventPause(pause, paused, gameTimer);
-      console.log(pause)
     });
     return this;
   }
