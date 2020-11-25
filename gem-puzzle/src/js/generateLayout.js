@@ -12,9 +12,11 @@ function createChipWithBcg(arr, type) {
     if (i === 0) {
       arr[i].chip.classList.add('empty');
     } else {
+      // eslint-disable-next-line no-param-reassign
       arr[i].chip.style.backgroundImage = `url("./assets/img/box/${imageNumber}.jpg`;
       const left = (i - 1) % type;
       const top = Math.trunc((i - 1) / type);
+      // eslint-disable-next-line no-param-reassign
       arr[i].chip.style.backgroundPosition = `left ${left * (100 / (type))}% top ${top * (100 / (type))}%`;
     }
   }
@@ -53,6 +55,7 @@ export default function generateLayout(chipType, count) {
 
   chipArr.forEach((item, i) => {
     container.append(item.chip);
+    // eslint-disable-next-line no-param-reassign
     item.chip.style.order = i;
     chipOrder.push(item.chip.dataset.key);
 
