@@ -114,9 +114,11 @@ export default function handleEventPause(pause, paused, timer) {
     if (get('mute') === 'no') {
       icon.innerHTML = 'volume_off';
       set('mute', 'yes');
+      console.log('no')
     } else {
       icon.innerHTML = 'volume_up';
       set('mute', 'no');
+      console.log('yes')
     }
   };
   icon.addEventListener('click', audioEvent);

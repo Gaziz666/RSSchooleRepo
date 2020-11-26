@@ -5,6 +5,7 @@ export default class Timer {
     this.pause = false;
     this.minHTML = document.querySelector('.min');
     this.secHTML = document.querySelector('.sec');
+    this.mute = false;
   }
 
   startTimer() {

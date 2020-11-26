@@ -1,7 +1,6 @@
 import Chip from './Chip';
-import handleMouseDown from './handleMouseDown';
+import HandleMouse from './HandleMouse';
 import { set } from './storage';
-import swipePreHandleEvent from './swipePreHandleEvent';
 
 function createChipWithBcg(arr, type) {
   const imageNumber = Math.floor((Math.random() * 150)) + 1;
@@ -53,14 +52,18 @@ export default function generateLayout(chipType, count) {
   makeRandomAndCheckWin(chipArr, chipType);
   counterMovie.innerHTML = count;
 
+  const swipeMouse = new HandleMouse();
+  const click = new HandleMouse();
   chipArr.forEach((item, i) => {
     container.append(item.chip);
     // eslint-disable-next-line no-param-reassign
     item.chip.style.order = i;
     chipOrder.push(item.chip.dataset.key);
 
-    item.chip.addEventListener('mousedown', (e) => (handleMouseDown(e, chipType)));
-    item.chip.addEventListener('touchstart', (e) => (swipePreHandleEvent(e, chipType)));
+    item.chip.addEventListener('mousedown', (e) => (click.click(e, chipType)));
+    item.chip.addEventListener('touchstart', (e) => (swipeMouse.swipe(e, chipType)));
+    item.chip.addEventListener('touchmove', (e) => (swipeMouse.onMouseMove(e)));
+    item.chip.addEventListener('touchend', () => (swipeMouse.touchendFunc()));
   });
   // memories start position of chips
   set('chipOrder', chipOrder);
