@@ -4,6 +4,7 @@ export default [
     translation: 'юбка',
     image: 'img/skirt.jpg',
     audioSrc: 'audio/skirt.mp3',
+    type: 'Clothes',
   },
   {
     word: 'pants',

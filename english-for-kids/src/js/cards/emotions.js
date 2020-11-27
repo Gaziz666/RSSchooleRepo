@@ -4,6 +4,7 @@ export default [
     translation: 'грустный',
     image: 'img/sad.jpg',
     audioSrc: 'audio/sad.mp3',
+    type: 'Emotions',
   },
   {
     word: 'angry',

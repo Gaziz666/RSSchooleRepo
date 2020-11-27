@@ -1,20 +1,27 @@
-import handleEventCard from "./handleEventCard";
-import create from "./utils/create";
+import handleEventClickCard from './handleEventClickCard';
+import CARD_TYPE from './cards/CARD_TYPE';
+import create from './utils/create';
+import loadCard from './cards/loadCard';
 
 export default class Card {
   constructor(cardType) {
     this.cardType = cardType;
+    this.container = document.querySelector('.card-container');
   }
 
-  createCards(container) {
+  createCards() {
     this.cardType.forEach((card) => {
-      const newCard = create('div', 'card', [
-        create('div', 'card-img', null, null, ['style', `background-image: url("${card.image}"`]),
-        create('div', 'card-name', card.word, null, ['style', "background-image: url('./assets/img/text-bcg.png')"]),
-      ]);
-      container.append(newCard);
-
-      newCard.addEventListener('click', (e) => handleEventCard(e, card.word));
+      const newCard = create({ el: 'div' }, { className: 'card' },
+        {
+          child: [
+            create({ el: 'div' }, { className: 'card-img' }, { child: null }, { parent: null }, { dataAttr: [['style', `background-image: url("${card.image}"`]] }),
+            create({ el: 'div' }, { className: 'card-name' }, { child: card.word }, { parent: null }, { dataAttr: [['style', "background-image: url('./assets/img/text-bcg.png')"]] }),
+          ],
+        });
+      this.container.append(newCard);
+      if (this.cardType[0].type === CARD_TYPE.MAIN) {
+        newCard.addEventListener('click', (e) => handleEventClickCard(e, loadCard(card.word)));
+      }
     });
   }
 }

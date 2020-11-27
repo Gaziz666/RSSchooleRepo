@@ -6,7 +6,7 @@
  * @param  {...array} dataAttr
  */
 // dataAttr = [['id', 'name'], ['data-key', 'key']]
-export default function create(el, classNames, child, parent, ...dataAttr) {
+export default function create({ el }, { className }, child, parent, dataAttr) {
   let element = null;
   try {
     element = document.createElement(el);
@@ -14,22 +14,22 @@ export default function create(el, classNames, child, parent, ...dataAttr) {
     throw new Error('unable to create  HTMLElement! Give a proper tag name');
   }
 
-  if (classNames) element.classList.add(...classNames.split(' '));
+  if (className) element.classList.add(...className.split(' '));
 
-  if (child && Array.isArray(child)) {
-    child.forEach((childElement) => childElement && element.appendChild(childElement));
-  } else if (child && typeof child === 'object') {
-    element.appendChild(child);
-  } else if (child && typeof child === 'string') {
-    element.innerHTML = child;
+  if (child && Array.isArray(child.child)) {
+    child.child.forEach((childElement) => childElement && element.appendChild(childElement));
+  } else if (child && typeof child.child === 'object' && child.child !== null) {
+    element.appendChild(child.child);
+  } else if (child && typeof child.child === 'string') {
+    element.innerHTML = child.child;
   }
 
-  if (parent) {
-    parent.appendChild(element);
+  if (parent && parent.parent !== null) {
+    parent.parent.appendChild(element);
   }
 
-  if (dataAttr.length) {
-    dataAttr.forEach(([attrName, attrValue]) => {
+  if (dataAttr && dataAttr.dataAttr.length) {
+    dataAttr.dataAttr.forEach(([attrName, attrValue]) => {
       if (attrValue === '') {
         element.setAttribute(attrValue, '');
       } else if (attrName.match(/value|id|placeholder|cols|rows|autocorrect|spellcheck|for|type|style/)) {

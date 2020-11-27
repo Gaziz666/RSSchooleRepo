@@ -4,6 +4,7 @@ export default [
     translation: '',
     image: '/dist/assets/img/angry.jpg',
     audioSrc: 'audio/cry.mp3',
+    type: 'Main',
   },
   {
     word: 'Actions',

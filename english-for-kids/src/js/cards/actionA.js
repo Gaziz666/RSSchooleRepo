@@ -4,6 +4,7 @@ export default [
     translation: 'плакать',
     image: 'img/cry.jpg',
     audioSrc: 'audio/cry.mp3',
+    type: 'Action A',
   },
   {
     word: 'dance',

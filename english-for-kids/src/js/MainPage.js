@@ -1,45 +1,55 @@
-/* eslint-disable import/extensions */
-import create from './utils/create.js';
-import burgerMenu from './icons/burgerMenu.js';
-import Card from './Card.js';
-import close from './icons/close.js';
-import handleEventOpenMenu from './handleEventOpenMenu.js';
+import create from './utils/create';
+
+import burgerMenu from './icons/burgerMenu';
+import Card from './Card';
+import close from './icons/close';
+import handleEventOpenMenu from './handleEventOpenMenu';
+import generateCardLayout from './generateCardLayout';
 
 export default class MainPage {
   constructor() {
-    this.sm = 0;
+    this.cardType = null;
   }
 
   init(cardType) {
-    this.sm = 0;
+    this.cardType = cardType;
     // create header
-    const toggle = create('div', 'toggle-wrapper', [
-      create('input', 'checkbox', null, null, ['type', 'checkbox'], ['id', 'checkbox']),
-      create('label', 'checkbox-label', null, null, ['for', 'checkbox']),
-    ]);
-    const header = create('header', 'main-header', [
-      create('div', 'logo', burgerMenu),
-      toggle,
-    ]);
+    const toggle = create({ el: 'div' }, { className: 'toggle-wrapper' },
+      {
+        child: [
+          create({ el: 'input' }, { className: 'checkbox' }, { child: null }, { parent: null }, { dataAttr: [['type', 'checkbox'], ['id', 'checkbox']] }),
+          create({ el: 'label' }, { className: 'checkbox-label' }, { child: null }, { parent: null }, { dataAttr: [['for', 'checkbox']] }),
+        ],
+      });
+    const header = create({ el: 'header' }, { className: 'main-header' },
+      {
+        child: [
+          create({ el: 'div' }, { className: 'logo' }, { child: burgerMenu }),
+          toggle,
+        ],
+      });
     // create header container
-    const container = create('main', 'card-container');
+    const container = create({ el: 'main' }, { className: 'card-container' });
     // create menu list
     const list = [];
-    cardType.forEach((card) => {
+    this.cardType.forEach((card) => {
       const listSpan = [];
       card.word.split('').forEach((letter) => {
-        const span = create('span', 'spanLetter', letter);
+        const span = create({ el: 'span' }, { className: 'spanLetter' }, { child: letter });
         listSpan.push(span);
       });
-      const listItem = create('li', 'list', listSpan);
+      const listItem = create({ el: 'li' }, { className: 'list' }, { child: listSpan });
       list.push(listItem);
     });
     // create menu, popup
-    const navMenu = create('div', 'nav-menu-container', [
-      create('div', 'close-wrapper', close),
-      create('ul', 'nav-menu', list),
-    ]);
-    const popup = create('div', 'popup', navMenu);
+    const navMenu = create({ el: 'div' }, { className: 'nav-menu-container' },
+      {
+        child: [
+          create({ el: 'div' }, { className: 'close-wrapper' }, { child: close }),
+          create({ el: 'ul' }, { className: 'nav-menu' }, { child: list }),
+        ],
+      });
+    const popup = create({ el: 'div' }, { className: 'popup' }, { child: navMenu });
 
     document.body.append(header);
     document.body.append(container);
@@ -48,6 +58,6 @@ export default class MainPage {
     popup.addEventListener('click', (e) => { handleEventOpenMenu(e, popup); });
     burgerMenu.addEventListener('click', (e) => { handleEventOpenMenu(e, popup); });
 
-    new Card(cardType).createCards(container);
+    generateCardLayout(this.cardType);
   }
 }

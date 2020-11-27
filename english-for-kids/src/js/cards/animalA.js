@@ -4,6 +4,7 @@ export default [
     translation: 'кот',
     image: 'img/cat.jpg',
     audioSrc: 'audio/cat.mp3',
+    type: 'Animals A',
   },
   {
     word: 'chick',

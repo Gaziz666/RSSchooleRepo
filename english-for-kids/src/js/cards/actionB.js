@@ -4,6 +4,7 @@ export default [
     translation: 'открывать',
     image: 'img/open.jpg',
     audioSrc: 'audio/open.mp3',
+    type: 'Action B',
   },
   {
     word: 'play',

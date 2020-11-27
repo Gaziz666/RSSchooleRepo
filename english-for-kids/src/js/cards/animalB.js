@@ -4,6 +4,7 @@ export default [
     translation: 'птица',
     image: 'img/bird.jpg',
     audioSrc: 'audio/bird.mp3',
+    type: 'Animals B',
   },
   {
     word: 'fish',
