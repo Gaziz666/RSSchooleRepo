@@ -1,4 +1,4 @@
-import create from './utils/create';
+import create from './utils/create'; 
 import { get } from './storage';
 
 export default function bestBoard() {

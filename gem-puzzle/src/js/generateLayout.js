@@ -1,4 +1,4 @@
-import Chip from './Chip';
+import Chip from './Chip'; 
 import HandleMouse from './HandleMouse';
 import { set } from './storage';
 

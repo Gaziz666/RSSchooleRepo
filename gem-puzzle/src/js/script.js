@@ -1,4 +1,4 @@
-import GemPuzzle from './Gem-puzzle';
+import GemPuzzle from './Gem-puzzle'; 
 import '../css/style.css';
 import '../css/popup.css';
 import generateLayout from './generateLayout';
