@@ -1,7 +1,7 @@
 import create from './utils/create';
 import handleEventPause from './handleEventPause';
 import { set, get } from './storage';
-import Timer from './Timer';
+import Timer from './timer';
 
 const timerDiv = create('div', 'timer-container',
   [create('span', 'description', 'Time:'), create('div', 'timer',
