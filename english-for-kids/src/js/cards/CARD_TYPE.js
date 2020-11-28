@@ -4,8 +4,9 @@ const CARD_TYPE = {
   MAIN: 'Main',
   ANIMALS_B: 'Animals B',
   ANIMALS_A: 'Animals A',
-  ACTION_B: 'Action B',
-  ACTION_A: 'Action A',
+  ACTION_B: 'Actions B',
+  ACTION_A: 'Actions A',
   COLORS: 'Colors',
+  SHAPES: 'Shapes',
 };
 export default CARD_TYPE;

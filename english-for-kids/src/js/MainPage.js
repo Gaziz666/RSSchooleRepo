@@ -1,18 +1,17 @@
 import create from './utils/create';
-
+import handleMouseEnterMenu from './handleMouseEnterMenu';
 import burgerMenu from './icons/burgerMenu';
 import Card from './Card';
 import close from './icons/close';
 import handleEventOpenMenu from './handleEventOpenMenu';
-import generateCardLayout from './generateCardLayout';
 
 export default class MainPage {
   constructor() {
-    this.cardType = null;
+    this.cardObj = null;
   }
 
-  init(cardType) {
-    this.cardType = cardType;
+  init(cardObj) {
+    this.cardObj = cardObj;
     // create header
     const toggle = create({ el: 'div' }, { className: 'toggle-wrapper' },
       {
@@ -32,13 +31,23 @@ export default class MainPage {
     const container = create({ el: 'main' }, { className: 'card-container' });
     // create menu list
     const list = [];
-    this.cardType.forEach((card) => {
+    const mainLetters = [];
+    'Main'.split('').forEach((letter) => {
+      const span = create({ el: 'span' }, { className: 'spanLetter' }, { child: letter });
+      mainLetters.push(span);
+    });
+    let letterWrapper = create({ el: 'a' }, { className: 'letter-wrapper' }, { child: mainLetters }, { parent: null });
+    const listMain = create({ el: 'li' }, { className: 'list' }, { child: letterWrapper }, { parent: null }, { dataAttr: [['name', 'Main']] });
+    list.push(listMain);
+
+    this.cardObj.forEach((card) => {
       const listSpan = [];
       card.word.split('').forEach((letter) => {
         const span = create({ el: 'span' }, { className: 'spanLetter' }, { child: letter });
         listSpan.push(span);
       });
-      const listItem = create({ el: 'li' }, { className: 'list' }, { child: listSpan });
+      letterWrapper = create({ el: 'a' }, { className: 'letter-wrapper' }, { child: listSpan }, { parent: null });
+      const listItem = create({ el: 'li' }, { className: 'list' }, { child: letterWrapper }, { parent: null }, { dataAttr: [['name', card.word]] });
       list.push(listItem);
     });
     // create menu, popup
@@ -55,9 +64,15 @@ export default class MainPage {
     document.body.append(container);
     document.body.append(popup);
 
+    const startPage = new Card();
+    startPage.createCards(cardObj);
+
     popup.addEventListener('click', (e) => { handleEventOpenMenu(e, popup); });
     burgerMenu.addEventListener('click', (e) => { handleEventOpenMenu(e, popup); });
-
-    generateCardLayout(this.cardType);
+    document.querySelectorAll('.letter-wrapper').forEach((item) => {
+      item.addEventListener('click', (e) => { handleEventOpenMenu(e, popup); });
+      item.addEventListener('mouseenter', (e) => { handleMouseEnterMenu(e); });
+      item.addEventListener('mouseleave', (e) => { handleMouseEnterMenu(e); });
+    });
   }
 }

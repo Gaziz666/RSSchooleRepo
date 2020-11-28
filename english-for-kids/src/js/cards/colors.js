@@ -1,10 +1,10 @@
 export default [
   {
-    word: 'cry',
-    translation: 'плакать',
-    image: '/dist/assets/img/actionA.png',
-    audioSrc: '/dist/assets/audio/cry.mp3',
-    type: 'Actions A',
+    word: 'orange',
+    translation: 'оранжевый',
+    image: 'img/cry.jpg',
+    audioSrc: 'audio/cry.mp3',
+    type: 'Colors',
   },
   {
     word: 'dance',

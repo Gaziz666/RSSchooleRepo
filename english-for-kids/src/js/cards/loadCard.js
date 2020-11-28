@@ -4,6 +4,8 @@ import animalA from './animalA';
 import animalB from './animalB';
 import clothes from './clothes';
 import emotions from './emotions';
+import colors from './colors';
+import shapes from './shapes';
 import main from './main';
 import CARD_TYPE from './CARD_TYPE';
 
@@ -21,6 +23,8 @@ export default function loadCard(cardType) {
       return animalB;
     case CARD_TYPE.COLORS:
       return colors;
+    case CARD_TYPE.SHAPES:
+      return shapes;
     case CARD_TYPE.CLOTHES:
       return clothes;
     case CARD_TYPE.EMOTIONS:
