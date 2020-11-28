@@ -1,4 +1,4 @@
-import create from './utils/create'; 
+import create from './utils/create';
 import handleEventPause from './handleEventPause';
 import { set, get } from './storage';
 import Timer from './Timer';

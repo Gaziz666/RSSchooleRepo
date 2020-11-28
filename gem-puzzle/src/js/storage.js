@@ -1,4 +1,4 @@
-export function set(name, value) { 
+export function set(name, value) {
   window.localStorage.setItem(name, JSON.stringify(value));
 }
 

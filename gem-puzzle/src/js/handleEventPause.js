@@ -1,5 +1,5 @@
 /* eslint-disable no-alert */
-import { set, get } from './storage'; 
+import { set, get } from './storage';
 import bestBoard from './bestBoard';
 import generateLayout from './generateLayout';
 

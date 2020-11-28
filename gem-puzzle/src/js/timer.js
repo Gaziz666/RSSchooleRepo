@@ -1,4 +1,4 @@
-export default class Timer { 
+export default class Timer {
   constructor() {
     this.sec = 0;
     this.min = 0;

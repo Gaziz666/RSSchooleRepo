@@ -1,4 +1,4 @@
-import create from './utils/create'; 
+import create from './utils/create';
 import { get, set } from './storage';
 
 export default class HandleMouse {
