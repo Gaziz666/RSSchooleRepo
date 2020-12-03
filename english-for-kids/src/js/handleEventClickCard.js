@@ -1,5 +1,5 @@
-import generateCardLayout from './generateCardLayout';
-
-export default function handleEventClickCard(e, cardType) {
-  generateCardLayout(cardType);
+export default function handleEventClickCard(e, toggle, audio) {
+  if (!toggle.checked && e.target.className !== 'rotate-btn') {
+    audio.play();
+  }
 }

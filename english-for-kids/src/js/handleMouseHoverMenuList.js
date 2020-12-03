@@ -1,4 +1,4 @@
-export default function handleMouseEnterMenu(e) {
+export default function handleMouseHoverMenuList(e) {
   const list = e.target.closest('.letter-wrapper');
   const { length } = list.childNodes;
   const maxTransform = 5;

@@ -1,5 +1,5 @@
 import create from './utils/create';
-import handleMouseEnterMenu from './handleMouseEnterMenu';
+import handleMouseHoverMenuList from './handleMouseHoverMenuList';
 import burgerMenu from './icons/burgerMenu';
 import Card from './Card';
 import close from './icons/close';
@@ -64,15 +64,15 @@ export default class MainPage {
     document.body.append(container);
     document.body.append(popup);
 
-    const startPage = new Card();
+    const startPage = new Card(container, toggle.firstChild);
     startPage.createCards(cardObj);
 
-    popup.addEventListener('click', (e) => { handleEventOpenMenu(e, popup, container); });
-    burgerMenu.addEventListener('click', (e) => { handleEventOpenMenu(e, popup, container); });
+    popup.addEventListener('click', (e) => { handleEventOpenMenu(e, popup, startPage); });
+    burgerMenu.addEventListener('click', (e) => { handleEventOpenMenu(e, popup, startPage); });
     list.forEach((li) => {
-      li.firstChild.addEventListener('click', (e) => { handleEventOpenMenu(e, popup, container); });
-      li.firstChild.addEventListener('mouseenter', (e) => { handleMouseEnterMenu(e); });
-      li.firstChild.addEventListener('mouseleave', (e) => { handleMouseEnterMenu(e); });
+      li.firstChild.addEventListener('click', (e) => { handleEventOpenMenu(e, popup, startPage); });
+      li.firstChild.addEventListener('mouseenter', (e) => { handleMouseHoverMenuList(e); });
+      li.firstChild.addEventListener('mouseleave', (e) => { handleMouseHoverMenuList(e); });
     });
   }
 }

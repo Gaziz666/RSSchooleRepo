@@ -9,7 +9,7 @@ import shapes from './shapes';
 import main from './main';
 import CARD_TYPE from './CARD_TYPE';
 
-export default function loadCard(cardType) {
+export default function loadCardObj(cardType) {
   switch (cardType) {
     case CARD_TYPE.MAIN:
       return main;
