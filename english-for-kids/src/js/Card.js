@@ -8,7 +8,6 @@ export default class Card {
     this.cardObj = null;
     this.cardType = null;
     this.container = document.querySelector('.card-container');
-    this.cardElements = document.querySelectorAll('.card');
   }
 
   createCards(cardObj) {
@@ -38,7 +37,6 @@ export default class Card {
           ],
         });
       // back card
-      /*
       const nameBack = create({ el: 'div' }, { className: 'card-name' }, { child: card.translation }, { parent: null });
       const backCard = create({ el: 'div' }, { className: 'card back' },
         {
@@ -53,16 +51,14 @@ export default class Card {
       const flipperContainer = create({ el: 'div' }, { className: 'flipper-container' }, { child: flipper }, { parent: null });
       this.container.append(flipperContainer);
       frontCard.addEventListener('click', () => this.reloadCard(card.word, audio));
-      */
-      this.container.append(frontCard);
-      frontCard.addEventListener('click', () => this.reloadCard(card.word, audio));
     });
-    this.cardElements = document.querySelectorAll('.card');
   }
 
   reloadCard(word, audio) {
     if (this.cardObj[0].type === CARD_TYPE.MAIN) {
-      this.cardElements.forEach((card) => card.remove());
+      while (this.container.hasChildNodes()) {
+        this.container.lastChild.remove();
+      }
       this.createCards(loadCard(word));
     } else {
       audio.play();

@@ -67,12 +67,12 @@ export default class MainPage {
     const startPage = new Card();
     startPage.createCards(cardObj);
 
-    popup.addEventListener('click', (e) => { handleEventOpenMenu(e, popup); });
-    burgerMenu.addEventListener('click', (e) => { handleEventOpenMenu(e, popup); });
-    document.querySelectorAll('.letter-wrapper').forEach((item) => {
-      item.addEventListener('click', (e) => { handleEventOpenMenu(e, popup); });
-      item.addEventListener('mouseenter', (e) => { handleMouseEnterMenu(e); });
-      item.addEventListener('mouseleave', (e) => { handleMouseEnterMenu(e); });
+    popup.addEventListener('click', (e) => { handleEventOpenMenu(e, popup, container); });
+    burgerMenu.addEventListener('click', (e) => { handleEventOpenMenu(e, popup, container); });
+    list.forEach((li) => {
+      li.firstChild.addEventListener('click', (e) => { handleEventOpenMenu(e, popup, container); });
+      li.firstChild.addEventListener('mouseenter', (e) => { handleMouseEnterMenu(e); });
+      li.firstChild.addEventListener('mouseleave', (e) => { handleMouseEnterMenu(e); });
     });
   }
 }
