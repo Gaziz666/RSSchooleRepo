@@ -1,7 +1,8 @@
-import '../css/style.css';
-import '../css/mainPage.css';
-import '../css/card.css';
-import '../css/menu.css';
+/* eslint-disable import/no-useless-path-segments */
+import './../css/style.css';
+import './../css/mainPage.css';
+import './../css/card.css';
+import './../css/menu.css';
 import MainPage from './MainPage';
 import loadCardObj from './cards/loadCardObj';
 import CARD_TYPE from './cards/CARD_TYPE';

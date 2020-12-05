@@ -16,8 +16,18 @@ export default class MainPage {
     const toggle = create({ el: 'div' }, { className: 'toggle-wrapper' },
       {
         child: [
-          create({ el: 'input' }, { className: 'checkbox' }, { child: null }, { parent: null }, { dataAttr: [['type', 'checkbox'], ['id', 'checkbox']] }),
-          create({ el: 'label' }, { className: 'checkbox-label' }, { child: null }, { parent: null }, { dataAttr: [['for', 'checkbox']] }),
+          create(
+            { el: 'input' }, 
+            { className: 'checkbox' }, 
+            { child: null }, 
+            { parent: null }, 
+            { dataAttr: [['type', 'checkbox'], ['id', 'checkbox']] }),
+          create(
+            { el: 'label' }, 
+            { className: 'checkbox-label' }, 
+            { child: null }, 
+            { parent: null }, 
+            { dataAttr: [['for', 'checkbox']] }),
         ],
       });
     const header = create({ el: 'header' }, { className: 'main-header' },
@@ -36,8 +46,17 @@ export default class MainPage {
       const span = create({ el: 'span' }, { className: 'spanLetter' }, { child: letter });
       mainLetters.push(span);
     });
-    let letterWrapper = create({ el: 'a' }, { className: 'letter-wrapper' }, { child: mainLetters }, { parent: null });
-    const listMain = create({ el: 'li' }, { className: 'list' }, { child: letterWrapper }, { parent: null }, { dataAttr: [['name', 'Main']] });
+    let letterWrapper = create(
+      { el: 'a' }, 
+      { className: 'letter-wrapper' }, 
+      { child: mainLetters }, 
+      { parent: null });
+    const listMain = create(
+      { el: 'li' }, 
+      { className: 'list' }, 
+      { child: letterWrapper }, 
+      { parent: null }, 
+      { dataAttr: [['name', 'Main']] });
     list.push(listMain);
 
     this.cardObj.forEach((card) => {
@@ -46,8 +65,17 @@ export default class MainPage {
         const span = create({ el: 'span' }, { className: 'spanLetter' }, { child: letter });
         listSpan.push(span);
       });
-      letterWrapper = create({ el: 'a' }, { className: 'letter-wrapper' }, { child: listSpan }, { parent: null });
-      const listItem = create({ el: 'li' }, { className: 'list' }, { child: letterWrapper }, { parent: null }, { dataAttr: [['name', card.word]] });
+      letterWrapper = create(
+        { el: 'a' }, 
+        { className: 'letter-wrapper' }, 
+        { child: listSpan }, 
+        { parent: null });
+      const listItem = create(
+        { el: 'li' }, 
+        { className: 'list' }, 
+        { child: letterWrapper }, 
+        { parent: null }, 
+        { dataAttr: [['name', card.word]] });
       list.push(listItem);
     });
     // create menu, popup
@@ -59,8 +87,10 @@ export default class MainPage {
         ],
       });
     const popup = create({ el: 'div' }, { className: 'popup' }, { child: navMenu });
+    const resultImg = create({ el: 'img' }, { className: 'result-div' });
 
     document.body.append(header);
+    document.body.append(resultImg);
     document.body.append(container);
     document.body.append(popup);
 

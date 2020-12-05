@@ -33,7 +33,7 @@ export default [
   {
     word: 'Emotions',
     translation: '',
-    image: '/dist/assets/img/emotions.png',
+    image: '/dist/assets/img/emotions.jpg',
     audioSrc: 'audio/fly.mp3',
   },
   {

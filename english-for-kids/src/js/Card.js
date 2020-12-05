@@ -1,15 +1,17 @@
 import create from './utils/create';
 import CARD_TYPE from './cards/CARD_TYPE';
 import loadCardObj from './cards/loadCardObj';
-import rotate from './icons/rotate';
+import playIcon from './icons/playIcon';
+import repeatIcon from './icons/repeatIcon';
 import handleRotateCard from './handleRotateCard';
-import handlePlayToggle from './handlePlayToggle';
 import handleEventClickCard from './handleEventClickCard';
+import { start, repeat } from './gameFunc';
+import {
+  audioCorrect, audioError, audioWin, audioLose,
+} from './audioTags';
 
 export default class Card {
   constructor(container, toggle) {
-    this.cardObj = null;
-    this.cardType = null;
     this.container = container;
     this.toggle = toggle;
   }
@@ -17,24 +19,64 @@ export default class Card {
   createCards(cardObj) {
     this.cardType = cardObj[0].type;
     this.cardObj = cardObj;
-    this.rotate = rotate;
     if (this.toggle.checked && this.cardType !== CARD_TYPE.MAIN) {
+      this.playBtn = create(
+        { el: 'button' },
+        { className: 'play-btn' },
+        {
+          child: [
+            create({ el: 'span' }, { className: 'play-text' }, { child: 'Start' }),
+            playIcon,
+            create({ el: 'span' }, { className: 'play-text' }, { child: 'game' }),
+          ],
+        },
+      );
+      this.repeatBtn = create(
+        { el: 'button' },
+        { className: 'repeat-btn non-visible' },
+        {
+          child: [
+            create({ el: 'span' }, { className: 'play-text' }, { child: 'repeat' }),
+            repeatIcon,
+            create({ el: 'span' }, { className: 'play-text' }, { child: 'word' }),
+          ],
+        },
+      );
+      const BtnContainer = create(
+        { el: 'div' },
+        { className: 'play-btn-container' },
+        { child: [this.playBtn, this.repeatBtn] },
+      );
+      this.container.append(BtnContainer);
       this.cardObj.forEach((card) => {
-        const playCard = create(
-          { el: 'div' },
-          { className: 'card-img' },
+        const audio = create(
+          { el: 'audio' },
+          { className: 'audio' },
           { child: null },
           { parent: null },
           {
             dataAttr: [
+              ['src', card.audioSrc], ['id', card.word],
+            ],
+          },
+        );
+        const playCard = create(
+          { el: 'div' },
+          { className: 'card-img playCardStyle' },
+          { child: audio },
+          { parent: null },
+          {
+            dataAttr: [
               ['style', `background-image: url("${card.image}"`],
-              ['name', card.name],
+              ['name', card.word],
             ],
           },
         );
         this.container.append(playCard);
-        console.log()
       });
+      this.container.append(audioError, audioCorrect, audioLose, audioWin);
+      this.playBtn.addEventListener('click', () => start(this.container, this.playBtn, this.repeatBtn));
+      this.repeatBtn.addEventListener('click', () => repeat());
     } else {
       this.cardObj.forEach((card) => {
         let rotateBtn = null;
@@ -137,14 +179,15 @@ export default class Card {
       });
     }
 
-    this.toggle.addEventListener('click', () => (this.reloadCard(this.cardType)));
-    console.log(this.cardType)
+    this.reload = () => this.reloadCard(this.cardType);
+    this.toggle.addEventListener('click', this.reload);
   }
 
   reloadCard(word) {
     while (this.container.hasChildNodes()) {
       this.container.lastChild.remove();
     }
+    this.toggle.removeEventListener('click', this.reload);
     this.createCards(loadCardObj(word));
   }
 }

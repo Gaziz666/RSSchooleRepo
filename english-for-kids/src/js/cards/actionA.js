@@ -2,14 +2,14 @@ export default [
   {
     word: 'cry',
     translation: 'плакать',
-    image: '/dist/assets/img/actionA.png',
+    image: '/dist/assets/img/cry.jpg',
     audioSrc: '/dist/assets/audio/cry.mp3',
     type: 'Actions A',
   },
   {
     word: 'dance',
     translation: 'танцевать',
-    image: '/dist/assets/img/actionA.png',
+    image: '/dist/assets/img/dance.jpg',
     audioSrc: '/dist/assets/audio/dance.mp3',
   },
   {
