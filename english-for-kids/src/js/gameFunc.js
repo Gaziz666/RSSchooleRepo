@@ -8,6 +8,8 @@ let correctAudio;
 let loseAudio;
 let winAudio;
 let errorCount = 0;
+let gameResult;
+let listMenuMain;
 const AUDIO = {
   CORRECT: 'correct',
   ERROR: 'error',
@@ -17,15 +19,38 @@ const AUDIO = {
 // eslint-disable-next-line no-use-before-define
 const handleEventPlayCard = (e) => checkAnswer(e);
 
+const checkGameResult = () => {
+  if (errorCount === 0) {
+    gameResult.firstChild.setAttribute('src', './assets/img/winner.png');
+    gameResult.firstChild.setAttribute('alt', 'winner image');
+    winAudio.play();
+  } else {
+    gameResult.firstChild.setAttribute('src', './assets/img/lose.png');
+    gameResult.firstChild.setAttribute('alt', 'lose image');
+    loseAudio.play();
+  }
+
+  while (container.childNodes.length > 0) {
+    container.lastChild.remove();
+  }
+  const event = new Event('click', { bubbles: true });
+  setTimeout(() => {
+    gameResult.firstChild.removeAttribute('src');
+    gameResult.firstChild.removeAttribute('alt');
+    listMenuMain.dispatchEvent(event);
+  }, 3000);
+};
+
 const start = (cardContainer, playButton, repeatButton) => {
   container = cardContainer || container;
   playBtn = playButton || playBtn;
   repeatBtn = repeatButton || repeatBtn;
   playBtn.classList.add('non-visible');
   repeatBtn.classList.remove('non-visible');
-
+  gameResult = container.previousSibling;
+  listMenuMain = container.nextSibling.querySelector('[data-name="Main"]');
   if (!errorAudio) {
-    container.childNodes.forEach((item) => {
+    gameResult.childNodes.forEach((item) => {
       if (item.dataset.name === AUDIO.CORRECT) {
         correctAudio = item;
       } else if (item.dataset.name === AUDIO.ERROR) {
@@ -42,20 +67,10 @@ const start = (cardContainer, playButton, repeatButton) => {
     .map((item) => item + 1);
 
   if (randomIndexArr.length === 0) {
-    if (errorCount === 0) {
-      container.previousSibling.setAttribute('src', './assets/img/winner.png');
-      container.previousSibling.setAttribute('alt', 'winner image');
-      winAudio.play();
-    } else {
-      container.previousSibling.setAttribute('src', './assets/img/lose.png');
-      container.previousSibling.setAttribute('alt', 'lose image');
-      loseAudio.play();
-    }
-    container.childNodes.forEach((card) => {
-      card.remove();
-    });
-    // startPage
+    checkGameResult();
+    return;
   }
+
   randomIndexArr.forEach((item) => {
     container.childNodes[item].addEventListener('click', handleEventPlayCard);
   });
@@ -83,4 +98,4 @@ const checkAnswer = (e) => {
   }
 };
 
-export { start, repeat, checkAnswer };
+export { start, repeat };

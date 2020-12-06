@@ -6,19 +6,19 @@ import repeatIcon from './icons/repeatIcon';
 import handleRotateCard from './handleRotateCard';
 import handleEventClickCard from './handleEventClickCard';
 import { start, repeat } from './gameFunc';
-import {
-  audioCorrect, audioError, audioWin, audioLose,
-} from './audioTags';
 
 export default class Card {
   constructor(container, toggle) {
     this.container = container;
     this.toggle = toggle;
+    this.cardObj = null;
   }
 
   createCards(cardObj) {
-    this.cardType = cardObj[0].type;
-    this.cardObj = cardObj;
+    this.cardObj = cardObj || this.cardObj;
+    console.log('cards', this.cardObj, cardObj);
+    this.cardType = this.cardObj[0].type || this.cardType;
+
     if (this.toggle.checked && this.cardType !== CARD_TYPE.MAIN) {
       this.playBtn = create(
         { el: 'button' },
@@ -74,7 +74,6 @@ export default class Card {
         );
         this.container.append(playCard);
       });
-      this.container.append(audioError, audioCorrect, audioLose, audioWin);
       this.playBtn.addEventListener('click', () => start(this.container, this.playBtn, this.repeatBtn));
       this.repeatBtn.addEventListener('click', () => repeat());
     } else {

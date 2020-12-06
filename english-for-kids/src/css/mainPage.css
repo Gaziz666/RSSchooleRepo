@@ -70,5 +70,5 @@
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
-  min-height: 600px;
+  min-height: 100px;
 }
