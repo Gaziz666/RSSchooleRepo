@@ -1,22 +1,17 @@
 import create from './utils/create';
 import handleMouseHoverMenuList from './handleMouseHoverMenuList';
-import burgerMenu from './icons/burgerMenu';
 import Card from './Card';
-import close from './icons/close';
-import handleEventOpenMenu from './handleEventOpenMenu';
-import {
-  audioCorrect, audioError, audioWin, audioLose,
-} from './audioTags';
-import schoolLogo from './icons/schoolLogo';
+import { getCloseIcon, getSchoolIcon, getBurgerMenuIcon } from './getIcons';
+import { closeMenu, openMenu, loadCard } from './handleEventMenu';
 
 export default class MainPage {
   constructor() {
-    this.cardObj = null;
+    this.arrOfCardObj = null;
   }
 
-  init(cardObj) {
-    this.cardObj = cardObj;
-    // create header
+  init(arrOfCardObj) {
+    this.arrOfCardObj = arrOfCardObj;
+
     const toggle = create('div',
       {
         className: 'toggle-wrapper',
@@ -37,6 +32,9 @@ export default class MainPage {
             }),
         ],
       });
+    const burgerMenu = getBurgerMenuIcon({
+      attribute: 'div', className: null, width: 30, height: 30,
+    });
     const header = create('header',
       {
         className: 'main-header',
@@ -71,7 +69,7 @@ export default class MainPage {
       });
     list.push(listMain);
 
-    this.cardObj.forEach((card) => {
+    this.arrOfCardObj.forEach((card) => {
       const listSpan = [];
       card.word.split('').forEach((letter) => {
         const span = create('span', { className: 'spanLetter', child: letter });
@@ -92,7 +90,14 @@ export default class MainPage {
       {
         className: 'nav-menu-container',
         child: [
-          create('div', { className: 'close-wrapper', child: close }),
+          create('div', {
+            className: 'close-wrapper',
+            child: getCloseIcon(
+              {
+                attribute: 'div', className: 'close-btn', width: 30, height: 30,
+              },
+            ),
+          }),
           create('ul', { className: 'nav-menu', child: list }),
         ],
       });
@@ -102,8 +107,11 @@ export default class MainPage {
     const gameResultDiv = create('div',
       {
         className: 'result-div',
-        child: [resultImg, errorCount, audioCorrect, audioError, audioWin, audioLose],
+        child: [resultImg, errorCount],
       });
+    const schoolLogo = getSchoolIcon({ attribute: 'a', className: 'close-btn' });
+    schoolLogo.setAttribute('href', 'https://rs.school/js/');
+    schoolLogo.setAttribute('target', '_blank');
     const footer = create('footer',
       {
         className: 'footer',
@@ -127,12 +135,12 @@ export default class MainPage {
     document.body.append(footer);
 
     const startPage = new Card(container, toggle.firstChild);
-    startPage.createCards(cardObj);
+    startPage.generateTrainCards(arrOfCardObj);
 
-    popup.addEventListener('click', (e) => { handleEventOpenMenu(e, popup, startPage); });
-    burgerMenu.addEventListener('click', (e) => { handleEventOpenMenu(e, popup, startPage); });
+    popup.addEventListener('click', () => { closeMenu(popup); });
+    burgerMenu.addEventListener('click', () => { openMenu(popup); });
     list.forEach((li) => {
-      li.firstChild.addEventListener('click', (e) => { handleEventOpenMenu(e, popup, startPage); });
+      li.firstChild.addEventListener('click', (e) => { loadCard(e, popup, startPage); });
       li.firstChild.addEventListener('mouseenter', (e) => { handleMouseHoverMenuList(e); });
       li.firstChild.addEventListener('mouseleave', (e) => { handleMouseHoverMenuList(e); });
     });
