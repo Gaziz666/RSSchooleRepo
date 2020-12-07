@@ -99,7 +99,7 @@
   border: 1px solid rgb(0, 0, 0);
 }
 
-.play-btn-container{
+.play-btn-container, .star-block{
   width: 100%;
   height: auto;
   margin: 10px 5px;
@@ -131,4 +131,14 @@
 .result-img {
   width: 100%;
   max-width: 600px;
+}
+
+.star-container{
+  width: 300px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.error-count{
+  font-size: 1.5rem;
 }

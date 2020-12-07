@@ -16,62 +16,57 @@ export default class Card {
 
   createCards(cardObj) {
     this.cardObj = cardObj || this.cardObj;
-    console.log('cards', this.cardObj, cardObj);
     this.cardType = this.cardObj[0].type || this.cardType;
 
     if (this.toggle.checked && this.cardType !== CARD_TYPE.MAIN) {
-      this.playBtn = create(
-        { el: 'button' },
-        { className: 'play-btn' },
+      this.playBtn = create('button',
         {
+          className: 'play-btn',
           child: [
-            create({ el: 'span' }, { className: 'play-text' }, { child: 'Start' }),
+            create('span', { className: 'play-text', child: 'Start' }),
             playIcon,
-            create({ el: 'span' }, { className: 'play-text' }, { child: 'game' }),
+            create('span', { className: 'play-text', child: 'game' }),
           ],
-        },
-      );
-      this.repeatBtn = create(
-        { el: 'button' },
-        { className: 'repeat-btn non-visible' },
+        });
+      this.repeatBtn = create('button',
         {
+          className: 'repeat-btn non-visible',
           child: [
-            create({ el: 'span' }, { className: 'play-text' }, { child: 'repeat' }),
+            create('span', { className: 'play-text', child: 'repeat' }),
             repeatIcon,
-            create({ el: 'span' }, { className: 'play-text' }, { child: 'word' }),
+            create('span', { className: 'play-text', child: 'word' }),
           ],
-        },
-      );
-      const BtnContainer = create(
-        { el: 'div' },
-        { className: 'play-btn-container' },
-        { child: [this.playBtn, this.repeatBtn] },
-      );
-      this.container.append(BtnContainer);
+        });
+      const BtnContainer = create('div',
+        {
+          className: 'play-btn-container',
+          child: [this.playBtn, this.repeatBtn],
+        });
+      const starContainer = create('div', { className: 'star-container' });
+      const starBlock = create('div', { className: 'star-block', child: starContainer });
+      this.container.append(BtnContainer, starBlock);
       this.cardObj.forEach((card) => {
-        const audio = create(
-          { el: 'audio' },
-          { className: 'audio' },
-          { child: null },
-          { parent: null },
+        const audio = create('audio',
           {
+            className: 'audio',
+            child: null,
+            parent: null,
+
             dataAttr: [
               ['src', card.audioSrc], ['id', card.word],
             ],
-          },
-        );
-        const playCard = create(
-          { el: 'div' },
-          { className: 'card-img playCardStyle' },
-          { child: audio },
-          { parent: null },
+          });
+        const playCard = create('div',
           {
+            className: 'card-img playCardStyle',
+            child: audio,
+            parent: null,
+
             dataAttr: [
               ['style', `background-image: url("${card.image}"`],
               ['name', card.word],
             ],
-          },
-        );
+          });
         this.container.append(playCard);
       });
       this.playBtn.addEventListener('click', () => start(this.container, this.playBtn, this.repeatBtn));
@@ -80,88 +75,76 @@ export default class Card {
       this.cardObj.forEach((card) => {
         let rotateBtn = null;
         if (this.cardType !== CARD_TYPE.MAIN) {
-          rotateBtn = create(
-            { el: 'div' },
-            { className: 'rotate-btn' },
-          );
+          rotateBtn = create('div', { className: 'rotate-btn' });
         }
-        const name = create(
-          { el: 'div' },
-          { className: 'card-name' },
-          { child: card.word },
-          { parent: null },
-        );
-        const audio = create(
-          { el: 'audio' },
-          { className: 'audio' },
-          { child: null },
-          { parent: null },
+        const name = create('div',
           {
+            className: 'card-name',
+            child: card.word,
+            parent: null,
+          });
+        const audio = create('audio',
+          {
+            className: 'audio',
+            child: null,
+            parent: null,
+
             dataAttr: [
               ['src', card.audioSrc], ['id', card.word],
             ],
-          },
-        );
-        const frontCard = create(
-          { el: 'div' },
-          { className: 'front' },
+          });
+        const frontCard = create('div',
           {
+            className: 'front',
             child: [
-              create(
-                { el: 'div' },
-                { className: 'card-img' },
-                { child: null },
-                { parent: null },
+              create('div',
                 {
+                  className: 'card-img',
+                  parent: null,
+                  child: null,
                   dataAttr:
                   [
                     ['style', `background-image: url("${card.image}"`],
                   ],
-                },
-              ),
+                }),
               name,
               rotateBtn,
               audio,
             ],
-          },
-        );
-        const nameBack = create(
-          { el: 'div' },
-          { className: 'card-name' },
-          { child: card.translation },
-          { parent: null },
-        );
-        const backCard = create(
-          { el: 'div' },
-          { className: 'back' },
+          });
+        const nameBack = create('div',
           {
+            className: 'card-name',
+            child: card.translation,
+            parent: null,
+          });
+        const backCard = create('div',
+          {
+            className: 'back',
             child: [
-              create(
-                { el: 'div' },
-                { className: 'card-img' },
-                { child: null },
-                { parent: null },
+              create('div',
                 {
+                  className: 'card-img',
+                  child: null,
+                  parent: null,
                   dataAttr: [
                     ['style', `background-image: url("${card.image}"`]],
-                },
-              ),
+                }),
               nameBack,
             ],
-          },
-        );
-        const flipper = create(
-          { el: 'div' },
-          { className: 'flipper' },
-          { child: [frontCard, backCard] },
-          { parent: null },
-        );
-        const flipperContainer = create(
-          { el: 'div' },
-          { className: 'flipper-container' },
-          { child: flipper },
-          { parent: null },
-        );
+          });
+        const flipper = create('div',
+          {
+            className: 'flipper',
+            child: [frontCard, backCard],
+            parent: null,
+          });
+        const flipperContainer = create('div',
+          {
+            className: 'flipper-container',
+            child: flipper,
+            parent: null,
+          });
         this.container.append(flipperContainer);
 
         if ((this.cardObj[0].type === CARD_TYPE.MAIN)) {

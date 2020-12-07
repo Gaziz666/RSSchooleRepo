@@ -2,10 +2,10 @@ import actionA from './actionA';
 import actionB from './actionB';
 import animalA from './animalA';
 import animalB from './animalB';
-import clothes from './clothes';
+import fruits from './fruits';
 import emotions from './emotions';
 import colors from './colors';
-import shapes from './shapes';
+import sports from './sports';
 import main from './main';
 import CARD_TYPE from './CARD_TYPE';
 
@@ -23,10 +23,10 @@ export default function loadCardObj(cardType) {
       return animalB;
     case CARD_TYPE.COLORS:
       return colors;
-    case CARD_TYPE.SHAPES:
-      return shapes;
-    case CARD_TYPE.CLOTHES:
-      return clothes;
+    case CARD_TYPE.SPORTS:
+      return sports;
+    case CARD_TYPE.FRUITS:
+      return fruits;
     case CARD_TYPE.EMOTIONS:
       return emotions;
     default:

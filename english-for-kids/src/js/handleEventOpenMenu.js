@@ -1,5 +1,3 @@
-// import generateCardLayout from './generateCardLayout';
-
 export default function handleEventOpenMenu(e, popup, startPage) {
   if (e.target.closest('.logo')) {
     popup.classList.add('visible');

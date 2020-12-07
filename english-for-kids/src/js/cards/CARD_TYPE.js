@@ -1,12 +1,12 @@
 const CARD_TYPE = {
   EMOTIONS: 'Emotions',
-  CLOTHES: 'Clothes',
+  FRUITS: 'Fruits',
   MAIN: 'Main',
   ANIMALS_B: 'Animals B',
   ANIMALS_A: 'Animals A',
   ACTION_B: 'Actions B',
   ACTION_A: 'Actions A',
   COLORS: 'Colors',
-  SHAPES: 'Shapes',
+  SPORTS: 'Sports',
 };
 export default CARD_TYPE;
