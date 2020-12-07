@@ -1,4 +1,5 @@
 const handleRotateCard = (e, front, back) => {
+  console.log(e)
   if (e.target.closest('.front')) {
     front.classList.add('front-transform');
     back.classList.add('back-transform');

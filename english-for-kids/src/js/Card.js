@@ -155,7 +155,7 @@ export default class Card {
 
         if (rotateBtn) {
           rotateBtn.addEventListener('click', (e) => handleRotateCard(e, frontCard, backCard));
-          backCard.addEventListener('mouseleave', (e) => handleRotateCard(e, frontCard, backCard));
+          flipperContainer.addEventListener('mouseleave', (e) => handleRotateCard(e, frontCard, backCard));
           backCard.addEventListener('touchend', (e) => handleRotateCard(e, frontCard, backCard));
         }
       });
