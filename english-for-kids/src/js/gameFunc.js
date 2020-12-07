@@ -35,7 +35,7 @@ const handleEventPlayCard = (e) => checkAnswer(e);
 const checkGameResult = () => {
   const errorCountElement = gameResult.childNodes[1];
   if (errorCount === 0) {
-    gameResult.firstChild.setAttribute('src', './assets/img/winner.png');
+    gameResult.firstChild.setAttribute('src', './assets/img/winner.jpg');
     gameResult.firstChild.setAttribute('alt', 'winner image');
     winAudio.play();
   } else {
