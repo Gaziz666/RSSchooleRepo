@@ -1,11 +1,11 @@
-@import "~normalize.css";
+@import '~normalize.css';
 
-@font-face{
+@font-face {
   font-family: 'AngryBirds';
-  src: url("./../assets/fonts/AngryBirds.ttf") format('truetype');
+  src: url('./../assets/fonts/AngryBirds.ttf') format('truetype');
 }
 
-*{
+html {
   font-family: 'AngryBirds', sans-serif;
   font-size: 14px;
   list-style: none;
@@ -24,7 +24,6 @@ ol[class] {
   list-style: none;
 }
 
-
 body {
   min-height: 100vh;
   scroll-behavior: smooth;
@@ -40,4 +39,3 @@ body {
   background-position: center;
   background-size: cover;
 }
-

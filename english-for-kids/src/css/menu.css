@@ -1,6 +1,6 @@
-.popup{
+.popup {
   position: fixed;
-  background-color: rgba(25,2,23,.8);
+  background-color: rgba(25, 2, 23, 0.8);
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -10,12 +10,12 @@
   transition-duration: 0.5s;
 }
 
-.visible{
+.visible {
   left: 0;
   visibility: inherit;
 }
 
-.nav-menu-container{
+.nav-menu-container {
   position: absolute;
   z-index: 100;
   background-color: #ef2528;
@@ -24,28 +24,30 @@
   left: 0;
   width: 300px;
   height: 100vh;
-  padding: 40px 10px 0 40px;  
+  padding: 40px 10px 0 40px;
 }
 
-.close-wrapper{
+.close-wrapper {
   text-align: right;
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
 }
 
-.list{
+.list {
   margin-bottom: 10px;
 }
+.list-background {
+  background-color: rgb(147, 117, 228);
+}
 
-.spanLetter{
+.spanLetter {
   font-size: 1.5rem;
   display: inline-block;
   cursor: pointer;
-
 }
 
-.Letter-wrapper{
+.Letter-wrapper {
   cursor: pointer;
 }
 
@@ -55,41 +57,61 @@
 }
 
 .transformed2 {
-  animation: translating2 0.5s cubic-bezier(.11,-0.02,.83,1.32) 0s;
+  animation: translating2 0.5s cubic-bezier(0.11, -0.02, 0.83, 1.32) 0s;
   display: inline-block;
 }
 .transformed3 {
-  animation: translating3 0.5s cubic-bezier(.11,-0.02,.83,1.32) 0s;
+  animation: translating3 0.5s cubic-bezier(0.11, -0.02, 0.83, 1.32) 0s;
   display: inline-block;
 }
 .transformed4 {
-  animation: translating4 0.5s cubic-bezier(.11,-0.02,.83,1.32);
+  animation: translating4 0.5s cubic-bezier(0.11, -0.02, 0.83, 1.32);
   animation-direction: alternate;
   display: inline-block;
 }
 .transformed5 {
-  animation: translating5 0.5s cubic-bezier(.11,-0.02,.83,1.32) 0s;
+  animation: translating5 0.5s cubic-bezier(0.11, -0.02, 0.83, 1.32) 0s;
   display: inline-block;
 }
 @keyframes translating1 {
-0%  { transform: translate(0, 0);}
-100% { transform: translate(0, 1px);}
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 1px);
+  }
 }
 @keyframes translating2 {
-  0%  { transform: translate(0, 0);}
-  100% { transform: translate(0, 3px);}
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 3px);
+  }
 }
 
 @keyframes translating3 {
-  0%  { transform: translate(0, 0);}
-  100% { transform: translate(0, 5px);}
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 5px);
+  }
 }
 
 @keyframes translating4 {
-  0%  { transform: translate(0, 0);}
-  100% { transform: translate(0, 7px);}
-}  
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 7px);
+  }
+}
 @keyframes translating5 {
-  0%  { transform: translate(0, 0);}
-  100% { transform: translate(0, 9px);}
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 9px);
+  }
 }

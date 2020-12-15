@@ -7,6 +7,10 @@ const closeMenu = (popup) => {
 };
 
 const loadCard = (e, popup, startPage) => {
+  e.target.closest('.nav-menu').childNodes.forEach((list) => {
+    list.classList.remove('list-background');
+  });
+  e.target.closest('.list').classList.add('list-background');
   popup.classList.remove('visible');
   startPage.reloadCard(e.target.closest('.list').dataset.name);
 };
